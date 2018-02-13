@@ -36,7 +36,6 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
 
   @Override
   public SLValue visitSyslogHeader(Rfc5424Parser.SyslogHeaderContext ctx) {
-    super.visitSyslogHeader(ctx);
     visitIfExists("syslog.header.appName", ctx.app_name());
     visitIfExists("syslog.header.hostName", ctx.hostname());
     visitIfExists("syslog.header.pri", ctx.pri());
@@ -75,7 +74,6 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
 
   @Override
   public SLValue visitHeaderTimeStamp(Rfc5424Parser.HeaderTimeStampContext ctx) {
-    super.visitHeaderTimeStamp(ctx);
     StringBuffer buffer = new StringBuffer();
     buffer.append(ctx.full_date().getText()).append("T").append(ctx.full_time().getText());
     return new SLValue(buffer.toString());
@@ -89,7 +87,6 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
 
   @Override
   public SLValue visitHeaderPriorityValue(Rfc5424Parser.HeaderPriorityValueContext ctx) {
-    super.visitHeaderPriorityValue(ctx);
     final StringBuffer buffer = new StringBuffer();
     ctx.digit().forEach((c) -> buffer.append(c.getText()));
     return new SLValue(buffer.toString());
@@ -109,14 +106,12 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
 
   @Override
   public SLValue visitMsgAny(Rfc5424Parser.MsgAnyContext ctx) {
-    super.visitMsgAny(ctx);
     msgMap.put("syslog.msg",ctx.getText());
     return SLValue.VOID;
   }
 
   @Override
   public SLValue visitMsgUTF8(Rfc5424Parser.MsgUTF8Context ctx) {
-    super.visitMsgUTF8(ctx);
     msgMap.put("syslog.msg",ctx.getText());
     return SLValue.VOID;
   }
