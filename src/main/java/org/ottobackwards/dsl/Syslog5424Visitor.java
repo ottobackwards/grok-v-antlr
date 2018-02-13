@@ -36,19 +36,20 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
 
   @Override
   public SLValue visitSyslogHeader(Rfc5424Parser.SyslogHeaderContext ctx) {
-    visitIfExists("syslog.header.appName", ctx.app_name());
-    visitIfExists("syslog.header.hostName", ctx.hostname());
-    visitIfExists("syslog.header.pri", ctx.pri());
-    visitIfExists("syslog.header.procId", ctx.procid());
-    visitIfExists("syslog.header.timestamp", ctx.timestamp());
-    visitIfExists("syslog.header.msgId", ctx.msgid());
+    visitIfExists(SyslogFieldKeys.HEADER_VERSION.getField(), ctx.version());
+    visitIfExists(SyslogFieldKeys.HEADER_APPNAME.getField(), ctx.app_name());
+    visitIfExists(SyslogFieldKeys.HEADER_HOSTNAME.getField(), ctx.hostname());
+    visitIfExists(SyslogFieldKeys.HEADER_PRI.getField(), ctx.pri());
+    visitIfExists(SyslogFieldKeys.HEADER_PROCID.getField(), ctx.procid());
+    visitIfExists(SyslogFieldKeys.HEADER_TIMESTAMP.getField(), ctx.timestamp());
+    visitIfExists(SyslogFieldKeys.HEADER_MSGID.getField(), ctx.msgid());
     return SLValue.VOID;
   }
 
   private void visitIfExists(String name, ParserRuleContext ctx) {
     SLValue value = visit(ctx);
-    if(value != null && !value.isNull() && !value.isVoid()) {
-      msgMap.put(name,value.toString());
+    if (value != null && !value.isNull() && !value.isVoid()) {
+      msgMap.put(name, value.toString());
     }
   }
 
@@ -74,45 +75,45 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
 
   @Override
   public SLValue visitHeaderTimeStamp(Rfc5424Parser.HeaderTimeStampContext ctx) {
-    StringBuffer buffer = new StringBuffer();
-    buffer.append(ctx.full_date().getText()).append("T").append(ctx.full_time().getText());
-    return new SLValue(buffer.toString());
+    return new SLValue(ctx.full_date().getText() + "T" + ctx.full_time().getText());
   }
 
   @Override
   public SLValue visitHeaderPriority(Rfc5424Parser.HeaderPriorityContext ctx) {
-    SLValue v = super.visit(ctx.prival());
-    return v;
+    return super.visit(ctx.prival());
   }
 
   @Override
   public SLValue visitHeaderPriorityValue(Rfc5424Parser.HeaderPriorityValueContext ctx) {
-    final StringBuffer buffer = new StringBuffer();
-    ctx.digit().forEach((c) -> buffer.append(c.getText()));
-    return new SLValue(buffer.toString());
+    return new SLValue(ctx.getText());
+  }
+
+  @Override
+  public SLValue visitHeaderVersion(Rfc5424Parser.HeaderVersionContext ctx) {
+    return new SLValue(ctx.getText());
   }
 
   @Override
   public SLValue visitSdElement(Rfc5424Parser.SdElementContext ctx) {
     String id = ctx.sd_id().getText();
     for (Rfc5424Parser.Sd_paramContext paramContext : ctx.sd_param()) {
-      msgMap.put(String.format("syslog.stucturedData.%s.%s",
-                               (ctx.sd_id().getText()),
-                               ((Rfc5424Parser.SdParamContext)paramContext).param_name().getText()),
-                               ((Rfc5424Parser.SdParamContext)paramContext).param_value().getText());
+      msgMap.put(String.format(SyslogFieldKeys.STRUCTURED_ELEMENT_ID_PNAME_FMT.getField(), (id),
+                               ((Rfc5424Parser.SdParamContext) paramContext).param_name()
+                                                                            .getText()),
+                 ((Rfc5424Parser.SdParamContext) paramContext).param_value().getText());
     }
     return SLValue.VOID;
   }
 
   @Override
   public SLValue visitMsgAny(Rfc5424Parser.MsgAnyContext ctx) {
-    msgMap.put("syslog.msg",ctx.getText());
+    msgMap.put(SyslogFieldKeys.MESSAGE.getField(), ctx.getText().trim());
     return SLValue.VOID;
   }
 
   @Override
   public SLValue visitMsgUTF8(Rfc5424Parser.MsgUTF8Context ctx) {
-    msgMap.put("syslog.msg",ctx.getText());
+    msgMap.put(SyslogFieldKeys.MESSAGE.getField(), ctx.getText().trim());
     return SLValue.VOID;
   }
 }
