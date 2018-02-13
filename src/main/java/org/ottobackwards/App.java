@@ -18,30 +18,42 @@
 
 package org.ottobackwards;
 
+import java.util.Map;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.ottobackwards.dsl.SLValue;
 import org.ottobackwards.dsl.Syslog5424Visitor;
 import org.ottobackwards.dsl.generated.Rfc5424Lexer;
 import org.ottobackwards.dsl.generated.Rfc5424Parser;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args ){
-        try {
-            Rfc5424Lexer lexer = new Rfc5424Lexer(new ANTLRFileStream("src/test/resources/log.txt"));
-            Rfc5424Parser parser = new Rfc5424Parser(new CommonTokenStream(lexer));
-            parser.setBuildParseTree(true);
-            ParseTree ctx = parser.syslog_msg();
-            Syslog5424Visitor visitor = new Syslog5424Visitor();
-            visitor.visit(ctx);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+public class App {
+
+  public static void main(String[] args) {
+    handleFile("src/test/resources/log_all.txt");
+    handleFile("src/test/resources/log.txt");
+    handleFile("src/test/resources/log_nils.txt");
+  }
+
+  private static void handleFile(String fileName) {
+    try {
+      Rfc5424Lexer lexer = new Rfc5424Lexer(new ANTLRFileStream(fileName));
+      Rfc5424Parser parser = new Rfc5424Parser(new CommonTokenStream(lexer));
+      parser.setBuildParseTree(true);
+      ParseTree ctx = parser.syslog_msg();
+      Syslog5424Visitor visitor = new Syslog5424Visitor();
+      SLValue value = visitor.visit(ctx);
+      Map<String, Object> map = value.asMap();
+      map.forEach((k, v) -> {
+        System.out.println(String.format("%s : %s", k, v));
+      });
+      System.out.println("\n\n=======================================");
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
+  }
 }

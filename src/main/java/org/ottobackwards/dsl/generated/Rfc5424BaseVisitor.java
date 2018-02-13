@@ -38,7 +38,7 @@ public class Rfc5424BaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSyslog_msg(Rfc5424Parser.Syslog_msgContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSyslogMsg(Rfc5424Parser.SyslogMsgContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -143,63 +143,63 @@ public class Rfc5424BaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFullDate(Rfc5424Parser.FullDateContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFull_date(Rfc5424Parser.Full_dateContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFullYearExpression(Rfc5424Parser.FullYearExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDate_fullyear(Rfc5424Parser.Date_fullyearContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMonthExpression(Rfc5424Parser.MonthExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDate_month(Rfc5424Parser.Date_monthContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMDayExpression(Rfc5424Parser.MDayExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDate_mday(Rfc5424Parser.Date_mdayContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFullTime(Rfc5424Parser.FullTimeContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFull_time(Rfc5424Parser.Full_timeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPartialTime(Rfc5424Parser.PartialTimeContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPartial_time(Rfc5424Parser.Partial_timeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHourExpression(Rfc5424Parser.HourExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTime_hour(Rfc5424Parser.Time_hourContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMinuteExpression(Rfc5424Parser.MinuteExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTime_minute(Rfc5424Parser.Time_minuteContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSecondExpression(Rfc5424Parser.SecondExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTime_second(Rfc5424Parser.Time_secondContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -227,14 +227,7 @@ public class Rfc5424BaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitStructuredData(Rfc5424Parser.StructuredDataContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStructured_data(Rfc5424Parser.Structured_dataContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -255,7 +248,7 @@ public class Rfc5424BaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSdId(Rfc5424Parser.SdIdContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSd_id(Rfc5424Parser.Sd_idContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -276,7 +269,7 @@ public class Rfc5424BaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitName(Rfc5424Parser.NameContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSd_name(Rfc5424Parser.Sd_nameContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

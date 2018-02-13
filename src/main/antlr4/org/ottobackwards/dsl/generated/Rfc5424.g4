@@ -39,7 +39,7 @@ grammar Rfc5424;
  */
 }
 
- syslog_msg      : header sp structured_data (sp msg)?;
+ syslog_msg      : header sp structured_data (msg)? #syslogMsg;
 
  header          : pri version sp timestamp sp hostname sp app_name sp procid sp msgid #syslogHeader;
 
@@ -74,33 +74,33 @@ grammar Rfc5424;
   | (full_date CAP_T full_time) #headerTimeStamp
   ;
 
-  full_date       : date_fullyear DASH date_month DASH date_mday #fullDate;
+  full_date       : date_fullyear DASH date_month DASH date_mday ;
 
-  date_fullyear   : digit digit digit digit #fullYearExpression;
+  date_fullyear   : digit digit digit digit ;
   //date_fullyear   : number #fullYearExpression;
 
-  date_month      : digit digit  #monthExpression;
+  date_month      : digit digit  ;
   //date_month      : number #monthExpression;
                   // 01-12
 
-  date_mday       : digit digit #mDayExpression;
+  date_mday       : digit digit ;
   //date_mday       : number #mDayExpression;
                   // 01-28, 01-29, 01-30, 01-31 based on
                   // month/year
 
-  full_time       : partial_time time_offset #fullTime;
+  full_time       : partial_time time_offset ;
 
-  partial_time    : time_hour COLON time_minute COLON time_second (time_secfrac)? #partialTime;
+  partial_time    : time_hour COLON time_minute COLON time_second (time_secfrac)? ;
 
-  time_hour       : digit digit #hourExpression;
+  time_hour       : digit digit ;
   //time_hour       : number #hourExpression;
                   // 00-23
 
-    time_minute     : digit digit #minuteExpression;
+    time_minute     : digit digit ;
     //time_minute     : number #minuteExpression;
                     // 00-59
 
-    time_second     : digit digit #secondExpression;
+    time_second     : digit digit ;
     //time_second     : number #secondExpression;
                     // 00-59
 
@@ -112,15 +112,15 @@ grammar Rfc5424;
     time_numoffset  : (PLUS | DASH) time_hour COLON time_minute;
 
 
-    structured_data : nilvalue  #nilStructuredData
-    | (LEFT_BRACE sd_element RIGHT_BRACE sp)+ #structuredData
+    structured_data : nilvalue
+    | (LEFT_BRACE sd_element RIGHT_BRACE sp)+
     ;
     sd_element      : sd_id (sp sd_param)* #sdElement;
 
     sd_param        : param_name EQUALS QUOTE param_value QUOTE #sdParam;
 
 
-    sd_id           : sd_name #sdId;
+    sd_id           : sd_name ;
 
     param_name      : sd_name #paramName;
 
@@ -130,7 +130,7 @@ grammar Rfc5424;
                     // characters '"', '\' and
                     // ']' MUST be escaped.
 
-    sd_name         : printusasciinospecials* #name;
+    sd_name         : printusasciinospecials* ;
                       // except '=', SP, ']', %d34 (")
 
     msg             : msg_any #msgAny

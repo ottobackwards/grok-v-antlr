@@ -32,11 +32,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface Rfc5424Visitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link Rfc5424Parser#syslog_msg}.
+	 * Visit a parse tree produced by the {@code syslogMsg}
+	 * labeled alternative in {@link Rfc5424Parser#syslog_msg}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSyslog_msg(Rfc5424Parser.Syslog_msgContext ctx);
+	T visitSyslogMsg(Rfc5424Parser.SyslogMsgContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code syslogHeader}
 	 * labeled alternative in {@link Rfc5424Parser#header}.
@@ -136,68 +137,59 @@ public interface Rfc5424Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitHeaderTimeStamp(Rfc5424Parser.HeaderTimeStampContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code fullDate}
-	 * labeled alternative in {@link Rfc5424Parser#full_date}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#full_date}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFullDate(Rfc5424Parser.FullDateContext ctx);
+	T visitFull_date(Rfc5424Parser.Full_dateContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code fullYearExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_fullyear}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#date_fullyear}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFullYearExpression(Rfc5424Parser.FullYearExpressionContext ctx);
+	T visitDate_fullyear(Rfc5424Parser.Date_fullyearContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code monthExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_month}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#date_month}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMonthExpression(Rfc5424Parser.MonthExpressionContext ctx);
+	T visitDate_month(Rfc5424Parser.Date_monthContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code mDayExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_mday}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#date_mday}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMDayExpression(Rfc5424Parser.MDayExpressionContext ctx);
+	T visitDate_mday(Rfc5424Parser.Date_mdayContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code fullTime}
-	 * labeled alternative in {@link Rfc5424Parser#full_time}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#full_time}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFullTime(Rfc5424Parser.FullTimeContext ctx);
+	T visitFull_time(Rfc5424Parser.Full_timeContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code partialTime}
-	 * labeled alternative in {@link Rfc5424Parser#partial_time}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#partial_time}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPartialTime(Rfc5424Parser.PartialTimeContext ctx);
+	T visitPartial_time(Rfc5424Parser.Partial_timeContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code hourExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_hour}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#time_hour}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitHourExpression(Rfc5424Parser.HourExpressionContext ctx);
+	T visitTime_hour(Rfc5424Parser.Time_hourContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code minuteExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_minute}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#time_minute}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMinuteExpression(Rfc5424Parser.MinuteExpressionContext ctx);
+	T visitTime_minute(Rfc5424Parser.Time_minuteContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code secondExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_second}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#time_second}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSecondExpression(Rfc5424Parser.SecondExpressionContext ctx);
+	T visitTime_second(Rfc5424Parser.Time_secondContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Rfc5424Parser#time_secfrac}.
 	 * @param ctx the parse tree
@@ -217,19 +209,11 @@ public interface Rfc5424Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTime_numoffset(Rfc5424Parser.Time_numoffsetContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code nilStructuredData}
-	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#structured_data}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code structuredData}
-	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStructuredData(Rfc5424Parser.StructuredDataContext ctx);
+	T visitStructured_data(Rfc5424Parser.Structured_dataContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code sdElement}
 	 * labeled alternative in {@link Rfc5424Parser#sd_element}.
@@ -245,12 +229,11 @@ public interface Rfc5424Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSdParam(Rfc5424Parser.SdParamContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code sdId}
-	 * labeled alternative in {@link Rfc5424Parser#sd_id}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#sd_id}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSdId(Rfc5424Parser.SdIdContext ctx);
+	T visitSd_id(Rfc5424Parser.Sd_idContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code paramName}
 	 * labeled alternative in {@link Rfc5424Parser#param_name}.
@@ -266,12 +249,11 @@ public interface Rfc5424Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParamValue(Rfc5424Parser.ParamValueContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code name}
-	 * labeled alternative in {@link Rfc5424Parser#sd_name}.
+	 * Visit a parse tree produced by {@link Rfc5424Parser#sd_name}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitName(Rfc5424Parser.NameContext ctx);
+	T visitSd_name(Rfc5424Parser.Sd_nameContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code msgAny}
 	 * labeled alternative in {@link Rfc5424Parser#msg}.

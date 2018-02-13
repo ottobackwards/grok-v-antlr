@@ -29,15 +29,17 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface Rfc5424Listener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link Rfc5424Parser#syslog_msg}.
+	 * Enter a parse tree produced by the {@code syslogMsg}
+	 * labeled alternative in {@link Rfc5424Parser#syslog_msg}.
 	 * @param ctx the parse tree
 	 */
-	void enterSyslog_msg(Rfc5424Parser.Syslog_msgContext ctx);
+	void enterSyslogMsg(Rfc5424Parser.SyslogMsgContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link Rfc5424Parser#syslog_msg}.
+	 * Exit a parse tree produced by the {@code syslogMsg}
+	 * labeled alternative in {@link Rfc5424Parser#syslog_msg}.
 	 * @param ctx the parse tree
 	 */
-	void exitSyslog_msg(Rfc5424Parser.Syslog_msgContext ctx);
+	void exitSyslogMsg(Rfc5424Parser.SyslogMsgContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code syslogHeader}
 	 * labeled alternative in {@link Rfc5424Parser#header}.
@@ -207,113 +209,95 @@ public interface Rfc5424Listener extends ParseTreeListener {
 	 */
 	void exitHeaderTimeStamp(Rfc5424Parser.HeaderTimeStampContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code fullDate}
-	 * labeled alternative in {@link Rfc5424Parser#full_date}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#full_date}.
 	 * @param ctx the parse tree
 	 */
-	void enterFullDate(Rfc5424Parser.FullDateContext ctx);
+	void enterFull_date(Rfc5424Parser.Full_dateContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code fullDate}
-	 * labeled alternative in {@link Rfc5424Parser#full_date}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#full_date}.
 	 * @param ctx the parse tree
 	 */
-	void exitFullDate(Rfc5424Parser.FullDateContext ctx);
+	void exitFull_date(Rfc5424Parser.Full_dateContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code fullYearExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_fullyear}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#date_fullyear}.
 	 * @param ctx the parse tree
 	 */
-	void enterFullYearExpression(Rfc5424Parser.FullYearExpressionContext ctx);
+	void enterDate_fullyear(Rfc5424Parser.Date_fullyearContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code fullYearExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_fullyear}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#date_fullyear}.
 	 * @param ctx the parse tree
 	 */
-	void exitFullYearExpression(Rfc5424Parser.FullYearExpressionContext ctx);
+	void exitDate_fullyear(Rfc5424Parser.Date_fullyearContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code monthExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_month}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#date_month}.
 	 * @param ctx the parse tree
 	 */
-	void enterMonthExpression(Rfc5424Parser.MonthExpressionContext ctx);
+	void enterDate_month(Rfc5424Parser.Date_monthContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code monthExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_month}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#date_month}.
 	 * @param ctx the parse tree
 	 */
-	void exitMonthExpression(Rfc5424Parser.MonthExpressionContext ctx);
+	void exitDate_month(Rfc5424Parser.Date_monthContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code mDayExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_mday}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#date_mday}.
 	 * @param ctx the parse tree
 	 */
-	void enterMDayExpression(Rfc5424Parser.MDayExpressionContext ctx);
+	void enterDate_mday(Rfc5424Parser.Date_mdayContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code mDayExpression}
-	 * labeled alternative in {@link Rfc5424Parser#date_mday}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#date_mday}.
 	 * @param ctx the parse tree
 	 */
-	void exitMDayExpression(Rfc5424Parser.MDayExpressionContext ctx);
+	void exitDate_mday(Rfc5424Parser.Date_mdayContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code fullTime}
-	 * labeled alternative in {@link Rfc5424Parser#full_time}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#full_time}.
 	 * @param ctx the parse tree
 	 */
-	void enterFullTime(Rfc5424Parser.FullTimeContext ctx);
+	void enterFull_time(Rfc5424Parser.Full_timeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code fullTime}
-	 * labeled alternative in {@link Rfc5424Parser#full_time}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#full_time}.
 	 * @param ctx the parse tree
 	 */
-	void exitFullTime(Rfc5424Parser.FullTimeContext ctx);
+	void exitFull_time(Rfc5424Parser.Full_timeContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code partialTime}
-	 * labeled alternative in {@link Rfc5424Parser#partial_time}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#partial_time}.
 	 * @param ctx the parse tree
 	 */
-	void enterPartialTime(Rfc5424Parser.PartialTimeContext ctx);
+	void enterPartial_time(Rfc5424Parser.Partial_timeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code partialTime}
-	 * labeled alternative in {@link Rfc5424Parser#partial_time}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#partial_time}.
 	 * @param ctx the parse tree
 	 */
-	void exitPartialTime(Rfc5424Parser.PartialTimeContext ctx);
+	void exitPartial_time(Rfc5424Parser.Partial_timeContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code hourExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_hour}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#time_hour}.
 	 * @param ctx the parse tree
 	 */
-	void enterHourExpression(Rfc5424Parser.HourExpressionContext ctx);
+	void enterTime_hour(Rfc5424Parser.Time_hourContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code hourExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_hour}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#time_hour}.
 	 * @param ctx the parse tree
 	 */
-	void exitHourExpression(Rfc5424Parser.HourExpressionContext ctx);
+	void exitTime_hour(Rfc5424Parser.Time_hourContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code minuteExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_minute}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#time_minute}.
 	 * @param ctx the parse tree
 	 */
-	void enterMinuteExpression(Rfc5424Parser.MinuteExpressionContext ctx);
+	void enterTime_minute(Rfc5424Parser.Time_minuteContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code minuteExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_minute}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#time_minute}.
 	 * @param ctx the parse tree
 	 */
-	void exitMinuteExpression(Rfc5424Parser.MinuteExpressionContext ctx);
+	void exitTime_minute(Rfc5424Parser.Time_minuteContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code secondExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_second}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#time_second}.
 	 * @param ctx the parse tree
 	 */
-	void enterSecondExpression(Rfc5424Parser.SecondExpressionContext ctx);
+	void enterTime_second(Rfc5424Parser.Time_secondContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code secondExpression}
-	 * labeled alternative in {@link Rfc5424Parser#time_second}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#time_second}.
 	 * @param ctx the parse tree
 	 */
-	void exitSecondExpression(Rfc5424Parser.SecondExpressionContext ctx);
+	void exitTime_second(Rfc5424Parser.Time_secondContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Rfc5424Parser#time_secfrac}.
 	 * @param ctx the parse tree
@@ -345,29 +329,15 @@ public interface Rfc5424Listener extends ParseTreeListener {
 	 */
 	void exitTime_numoffset(Rfc5424Parser.Time_numoffsetContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code nilStructuredData}
-	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#structured_data}.
 	 * @param ctx the parse tree
 	 */
-	void enterNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx);
+	void enterStructured_data(Rfc5424Parser.Structured_dataContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code nilStructuredData}
-	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#structured_data}.
 	 * @param ctx the parse tree
 	 */
-	void exitNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code structuredData}
-	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
-	 * @param ctx the parse tree
-	 */
-	void enterStructuredData(Rfc5424Parser.StructuredDataContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code structuredData}
-	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
-	 * @param ctx the parse tree
-	 */
-	void exitStructuredData(Rfc5424Parser.StructuredDataContext ctx);
+	void exitStructured_data(Rfc5424Parser.Structured_dataContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code sdElement}
 	 * labeled alternative in {@link Rfc5424Parser#sd_element}.
@@ -393,17 +363,15 @@ public interface Rfc5424Listener extends ParseTreeListener {
 	 */
 	void exitSdParam(Rfc5424Parser.SdParamContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code sdId}
-	 * labeled alternative in {@link Rfc5424Parser#sd_id}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#sd_id}.
 	 * @param ctx the parse tree
 	 */
-	void enterSdId(Rfc5424Parser.SdIdContext ctx);
+	void enterSd_id(Rfc5424Parser.Sd_idContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code sdId}
-	 * labeled alternative in {@link Rfc5424Parser#sd_id}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#sd_id}.
 	 * @param ctx the parse tree
 	 */
-	void exitSdId(Rfc5424Parser.SdIdContext ctx);
+	void exitSd_id(Rfc5424Parser.Sd_idContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code paramName}
 	 * labeled alternative in {@link Rfc5424Parser#param_name}.
@@ -429,17 +397,15 @@ public interface Rfc5424Listener extends ParseTreeListener {
 	 */
 	void exitParamValue(Rfc5424Parser.ParamValueContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code name}
-	 * labeled alternative in {@link Rfc5424Parser#sd_name}.
+	 * Enter a parse tree produced by {@link Rfc5424Parser#sd_name}.
 	 * @param ctx the parse tree
 	 */
-	void enterName(Rfc5424Parser.NameContext ctx);
+	void enterSd_name(Rfc5424Parser.Sd_nameContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code name}
-	 * labeled alternative in {@link Rfc5424Parser#sd_name}.
+	 * Exit a parse tree produced by {@link Rfc5424Parser#sd_name}.
 	 * @param ctx the parse tree
 	 */
-	void exitName(Rfc5424Parser.NameContext ctx);
+	void exitSd_name(Rfc5424Parser.Sd_nameContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code msgAny}
 	 * labeled alternative in {@link Rfc5424Parser#msg}.

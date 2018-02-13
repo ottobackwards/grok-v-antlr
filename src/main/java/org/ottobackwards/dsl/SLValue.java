@@ -19,6 +19,7 @@
 package org.ottobackwards.dsl;
 
 import java.util.List;
+import java.util.Map;
 
 public class SLValue implements Comparable<SLValue>{
   public static final SLValue NULL = new SLValue();
@@ -37,7 +38,7 @@ public class SLValue implements Comparable<SLValue>{
     }
     value = v;
     // only accept boolean, list, number or string types
-    if(!(isBoolean() || isList() || isNumber() || isString())) {
+    if(!(isBoolean() || isList() || isNumber() || isString() || isMap())) {
       throw new RuntimeException("invalid data type: " + v + " (" + v.getClass() + ")");
     }
   }
@@ -58,6 +59,9 @@ public class SLValue implements Comparable<SLValue>{
   public List<SLValue> asList() {
     return (List<SLValue>)value;
   }
+
+  @SuppressWarnings("unchecked")
+  public Map<String,Object> asMap() { return (Map<String,Object>)value;}
 
   public String asString() {
     return (String)value;
@@ -130,6 +134,8 @@ public class SLValue implements Comparable<SLValue>{
   public boolean isString() {
     return value instanceof String;
   }
+
+  public boolean isMap() { return value instanceof Map;}
 
   @Override
   public String toString() {

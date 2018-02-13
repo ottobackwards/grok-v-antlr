@@ -37,13 +37,13 @@ public class Rfc5424BaseListener implements Rfc5424Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSyslog_msg(Rfc5424Parser.Syslog_msgContext ctx) { }
+	@Override public void enterSyslogMsg(Rfc5424Parser.SyslogMsgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSyslog_msg(Rfc5424Parser.Syslog_msgContext ctx) { }
+	@Override public void exitSyslogMsg(Rfc5424Parser.SyslogMsgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -217,109 +217,109 @@ public class Rfc5424BaseListener implements Rfc5424Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFullDate(Rfc5424Parser.FullDateContext ctx) { }
+	@Override public void enterFull_date(Rfc5424Parser.Full_dateContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFullDate(Rfc5424Parser.FullDateContext ctx) { }
+	@Override public void exitFull_date(Rfc5424Parser.Full_dateContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFullYearExpression(Rfc5424Parser.FullYearExpressionContext ctx) { }
+	@Override public void enterDate_fullyear(Rfc5424Parser.Date_fullyearContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFullYearExpression(Rfc5424Parser.FullYearExpressionContext ctx) { }
+	@Override public void exitDate_fullyear(Rfc5424Parser.Date_fullyearContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMonthExpression(Rfc5424Parser.MonthExpressionContext ctx) { }
+	@Override public void enterDate_month(Rfc5424Parser.Date_monthContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMonthExpression(Rfc5424Parser.MonthExpressionContext ctx) { }
+	@Override public void exitDate_month(Rfc5424Parser.Date_monthContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMDayExpression(Rfc5424Parser.MDayExpressionContext ctx) { }
+	@Override public void enterDate_mday(Rfc5424Parser.Date_mdayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMDayExpression(Rfc5424Parser.MDayExpressionContext ctx) { }
+	@Override public void exitDate_mday(Rfc5424Parser.Date_mdayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFullTime(Rfc5424Parser.FullTimeContext ctx) { }
+	@Override public void enterFull_time(Rfc5424Parser.Full_timeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFullTime(Rfc5424Parser.FullTimeContext ctx) { }
+	@Override public void exitFull_time(Rfc5424Parser.Full_timeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPartialTime(Rfc5424Parser.PartialTimeContext ctx) { }
+	@Override public void enterPartial_time(Rfc5424Parser.Partial_timeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPartialTime(Rfc5424Parser.PartialTimeContext ctx) { }
+	@Override public void exitPartial_time(Rfc5424Parser.Partial_timeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterHourExpression(Rfc5424Parser.HourExpressionContext ctx) { }
+	@Override public void enterTime_hour(Rfc5424Parser.Time_hourContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitHourExpression(Rfc5424Parser.HourExpressionContext ctx) { }
+	@Override public void exitTime_hour(Rfc5424Parser.Time_hourContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMinuteExpression(Rfc5424Parser.MinuteExpressionContext ctx) { }
+	@Override public void enterTime_minute(Rfc5424Parser.Time_minuteContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMinuteExpression(Rfc5424Parser.MinuteExpressionContext ctx) { }
+	@Override public void exitTime_minute(Rfc5424Parser.Time_minuteContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSecondExpression(Rfc5424Parser.SecondExpressionContext ctx) { }
+	@Override public void enterTime_second(Rfc5424Parser.Time_secondContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSecondExpression(Rfc5424Parser.SecondExpressionContext ctx) { }
+	@Override public void exitTime_second(Rfc5424Parser.Time_secondContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -361,25 +361,13 @@ public class Rfc5424BaseListener implements Rfc5424Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx) { }
+	@Override public void enterStructured_data(Rfc5424Parser.Structured_dataContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStructuredData(Rfc5424Parser.StructuredDataContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStructuredData(Rfc5424Parser.StructuredDataContext ctx) { }
+	@Override public void exitStructured_data(Rfc5424Parser.Structured_dataContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -409,13 +397,13 @@ public class Rfc5424BaseListener implements Rfc5424Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSdId(Rfc5424Parser.SdIdContext ctx) { }
+	@Override public void enterSd_id(Rfc5424Parser.Sd_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSdId(Rfc5424Parser.SdIdContext ctx) { }
+	@Override public void exitSd_id(Rfc5424Parser.Sd_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -445,13 +433,13 @@ public class Rfc5424BaseListener implements Rfc5424Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterName(Rfc5424Parser.NameContext ctx) { }
+	@Override public void enterSd_name(Rfc5424Parser.Sd_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitName(Rfc5424Parser.NameContext ctx) { }
+	@Override public void exitSd_name(Rfc5424Parser.Sd_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
