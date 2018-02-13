@@ -1,9 +1,8 @@
-package org.ottobackwards.dsl.performance;
+package org.ottobackwards.performance;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 import oi.thekraken.grok.api.Grok;

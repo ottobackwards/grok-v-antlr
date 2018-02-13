@@ -1,7 +1,6 @@
-package org.ottobackwards.dsl.performance;
+package org.ottobackwards.performance;
 
 import java.util.concurrent.TimeUnit;
-import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
