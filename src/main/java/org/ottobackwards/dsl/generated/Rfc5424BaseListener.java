@@ -361,13 +361,25 @@ public class Rfc5424BaseListener implements Rfc5424Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStructured_data(Rfc5424Parser.Structured_dataContext ctx) { }
+	@Override public void enterNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStructured_data(Rfc5424Parser.Structured_dataContext ctx) { }
+	@Override public void exitNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStructuredData(Rfc5424Parser.StructuredDataContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStructuredData(Rfc5424Parser.StructuredDataContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -397,37 +409,37 @@ public class Rfc5424BaseListener implements Rfc5424Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSd_id(Rfc5424Parser.Sd_idContext ctx) { }
+	@Override public void enterSdId(Rfc5424Parser.SdIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSd_id(Rfc5424Parser.Sd_idContext ctx) { }
+	@Override public void exitSdId(Rfc5424Parser.SdIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParam_name(Rfc5424Parser.Param_nameContext ctx) { }
+	@Override public void enterParamName(Rfc5424Parser.ParamNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParam_name(Rfc5424Parser.Param_nameContext ctx) { }
+	@Override public void exitParamName(Rfc5424Parser.ParamNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParam_value(Rfc5424Parser.Param_valueContext ctx) { }
+	@Override public void enterParamValue(Rfc5424Parser.ParamValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParam_value(Rfc5424Parser.Param_valueContext ctx) { }
+	@Override public void exitParamValue(Rfc5424Parser.ParamValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

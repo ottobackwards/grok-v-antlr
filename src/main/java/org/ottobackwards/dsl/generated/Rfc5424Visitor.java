@@ -217,11 +217,19 @@ public interface Rfc5424Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTime_numoffset(Rfc5424Parser.Time_numoffsetContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Rfc5424Parser#structured_data}.
+	 * Visit a parse tree produced by the {@code nilStructuredData}
+	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStructured_data(Rfc5424Parser.Structured_dataContext ctx);
+	T visitNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code structuredData}
+	 * labeled alternative in {@link Rfc5424Parser#structured_data}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructuredData(Rfc5424Parser.StructuredDataContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code sdElement}
 	 * labeled alternative in {@link Rfc5424Parser#sd_element}.
@@ -237,23 +245,26 @@ public interface Rfc5424Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSdParam(Rfc5424Parser.SdParamContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Rfc5424Parser#sd_id}.
+	 * Visit a parse tree produced by the {@code sdId}
+	 * labeled alternative in {@link Rfc5424Parser#sd_id}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSd_id(Rfc5424Parser.Sd_idContext ctx);
+	T visitSdId(Rfc5424Parser.SdIdContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Rfc5424Parser#param_name}.
+	 * Visit a parse tree produced by the {@code paramName}
+	 * labeled alternative in {@link Rfc5424Parser#param_name}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParam_name(Rfc5424Parser.Param_nameContext ctx);
+	T visitParamName(Rfc5424Parser.ParamNameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Rfc5424Parser#param_value}.
+	 * Visit a parse tree produced by the {@code paramValue}
+	 * labeled alternative in {@link Rfc5424Parser#param_value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParam_value(Rfc5424Parser.Param_valueContext ctx);
+	T visitParamValue(Rfc5424Parser.ParamValueContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code name}
 	 * labeled alternative in {@link Rfc5424Parser#sd_name}.

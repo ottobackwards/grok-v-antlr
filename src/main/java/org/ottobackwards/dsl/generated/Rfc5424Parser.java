@@ -1939,8 +1939,39 @@ public class Rfc5424Parser extends Parser {
 	}
 
 	public static class Structured_dataContext extends ParserRuleContext {
+		public Structured_dataContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_structured_data; }
+	 
+		public Structured_dataContext() { }
+		public void copyFrom(Structured_dataContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class NilStructuredDataContext extends Structured_dataContext {
 		public NilvalueContext nilvalue() {
 			return getRuleContext(NilvalueContext.class,0);
+		}
+		public NilStructuredDataContext(Structured_dataContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterNilStructuredData(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitNilStructuredData(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitNilStructuredData(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class StructuredDataContext extends Structured_dataContext {
+		public List<TerminalNode> LEFT_BRACE() { return getTokens(Rfc5424Parser.LEFT_BRACE); }
+		public TerminalNode LEFT_BRACE(int i) {
+			return getToken(Rfc5424Parser.LEFT_BRACE, i);
 		}
 		public List<Sd_elementContext> sd_element() {
 			return getRuleContexts(Sd_elementContext.class);
@@ -1948,21 +1979,28 @@ public class Rfc5424Parser extends Parser {
 		public Sd_elementContext sd_element(int i) {
 			return getRuleContext(Sd_elementContext.class,i);
 		}
-		public Structured_dataContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
+		public List<TerminalNode> RIGHT_BRACE() { return getTokens(Rfc5424Parser.RIGHT_BRACE); }
+		public TerminalNode RIGHT_BRACE(int i) {
+			return getToken(Rfc5424Parser.RIGHT_BRACE, i);
 		}
-		@Override public int getRuleIndex() { return RULE_structured_data; }
+		public List<SpContext> sp() {
+			return getRuleContexts(SpContext.class);
+		}
+		public SpContext sp(int i) {
+			return getRuleContext(SpContext.class,i);
+		}
+		public StructuredDataContext(Structured_dataContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterStructured_data(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterStructuredData(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitStructured_data(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitStructuredData(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitStructured_data(this);
+			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitStructuredData(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1972,9 +2010,10 @@ public class Rfc5424Parser extends Parser {
 		enterRule(_localctx, 44, RULE_structured_data);
 		int _la;
 		try {
-			setState(245);
+			setState(249);
 			switch (_input.LA(1)) {
 			case DASH:
+				_localctx = new NilStructuredDataContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(239);
@@ -1982,19 +2021,26 @@ public class Rfc5424Parser extends Parser {
 				}
 				break;
 			case LEFT_BRACE:
+				_localctx = new StructuredDataContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(241); 
+				setState(245); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
 					setState(240);
+					match(LEFT_BRACE);
+					setState(241);
 					sd_element();
+					setState(242);
+					match(RIGHT_BRACE);
+					setState(243);
+					sp();
 					}
 					}
-					setState(243); 
+					setState(247); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==LEFT_BRACE );
@@ -2027,11 +2073,9 @@ public class Rfc5424Parser extends Parser {
 		}
 	}
 	public static class SdElementContext extends Sd_elementContext {
-		public TerminalNode LEFT_BRACE() { return getToken(Rfc5424Parser.LEFT_BRACE, 0); }
 		public Sd_idContext sd_id() {
 			return getRuleContext(Sd_idContext.class,0);
 		}
-		public TerminalNode RIGHT_BRACE() { return getToken(Rfc5424Parser.RIGHT_BRACE, 0); }
 		public List<SpContext> sp() {
 			return getRuleContexts(SpContext.class);
 		}
@@ -2068,28 +2112,24 @@ public class Rfc5424Parser extends Parser {
 			_localctx = new SdElementContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(247);
-			match(LEFT_BRACE);
-			setState(248);
+			setState(251);
 			sd_id();
-			setState(254);
+			setState(257);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==SPACE) {
 				{
 				{
-				setState(249);
+				setState(252);
 				sp();
-				setState(250);
+				setState(253);
 				sd_param();
 				}
 				}
-				setState(256);
+				setState(259);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(257);
-			match(RIGHT_BRACE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2149,15 +2189,15 @@ public class Rfc5424Parser extends Parser {
 			_localctx = new SdParamContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(259);
-			param_name();
 			setState(260);
-			match(EQUALS);
+			param_name();
 			setState(261);
-			match(QUOTE);
+			match(EQUALS);
 			setState(262);
-			param_value();
+			match(QUOTE);
 			setState(263);
+			param_value();
+			setState(264);
 			match(QUOTE);
 			}
 		}
@@ -2173,24 +2213,32 @@ public class Rfc5424Parser extends Parser {
 	}
 
 	public static class Sd_idContext extends ParserRuleContext {
-		public Sd_nameContext sd_name() {
-			return getRuleContext(Sd_nameContext.class,0);
-		}
 		public Sd_idContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sd_id; }
+	 
+		public Sd_idContext() { }
+		public void copyFrom(Sd_idContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class SdIdContext extends Sd_idContext {
+		public Sd_nameContext sd_name() {
+			return getRuleContext(Sd_nameContext.class,0);
+		}
+		public SdIdContext(Sd_idContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterSd_id(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterSdId(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitSd_id(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitSdId(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitSd_id(this);
+			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitSdId(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2199,9 +2247,10 @@ public class Rfc5424Parser extends Parser {
 		Sd_idContext _localctx = new Sd_idContext(_ctx, getState());
 		enterRule(_localctx, 50, RULE_sd_id);
 		try {
+			_localctx = new SdIdContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(265);
+			setState(266);
 			sd_name();
 			}
 		}
@@ -2217,24 +2266,32 @@ public class Rfc5424Parser extends Parser {
 	}
 
 	public static class Param_nameContext extends ParserRuleContext {
-		public Sd_nameContext sd_name() {
-			return getRuleContext(Sd_nameContext.class,0);
-		}
 		public Param_nameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_param_name; }
+	 
+		public Param_nameContext() { }
+		public void copyFrom(Param_nameContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class ParamNameContext extends Param_nameContext {
+		public Sd_nameContext sd_name() {
+			return getRuleContext(Sd_nameContext.class,0);
+		}
+		public ParamNameContext(Param_nameContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterParam_name(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterParamName(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitParam_name(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitParamName(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitParam_name(this);
+			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitParamName(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2243,9 +2300,10 @@ public class Rfc5424Parser extends Parser {
 		Param_nameContext _localctx = new Param_nameContext(_ctx, getState());
 		enterRule(_localctx, 52, RULE_param_name);
 		try {
+			_localctx = new ParamNameContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(267);
+			setState(268);
 			sd_name();
 			}
 		}
@@ -2261,24 +2319,29 @@ public class Rfc5424Parser extends Parser {
 	}
 
 	public static class Param_valueContext extends ParserRuleContext {
-		public Utf_8_stringContext utf_8_string() {
-			return getRuleContext(Utf_8_stringContext.class,0);
-		}
 		public Param_valueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_param_value; }
+	 
+		public Param_valueContext() { }
+		public void copyFrom(Param_valueContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class ParamValueContext extends Param_valueContext {
+		public ParamValueContext(Param_valueContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterParam_value(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).enterParamValue(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitParam_value(this);
+			if ( listener instanceof Rfc5424Listener ) ((Rfc5424Listener)listener).exitParamValue(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitParam_value(this);
+			if ( visitor instanceof Rfc5424Visitor ) return ((Rfc5424Visitor<? extends T>)visitor).visitParamValue(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2288,291 +2351,300 @@ public class Rfc5424Parser extends Parser {
 		enterRule(_localctx, 54, RULE_param_value);
 		int _la;
 		try {
+			_localctx = new ParamValueContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(272);
-			switch (_input.LA(1)) {
-			case TAB:
-			case LF:
-			case CR:
-			case SPACE:
-			case EXCLAMATION:
-			case POUND:
-			case DOLLAR:
-			case PERCENT:
-			case AMPERSAND:
-			case APOSTROPHE:
-			case LEFT_PAREN:
-			case RIGHT_PAREN:
-			case ASTERISK:
-			case PLUS:
-			case COMMA:
-			case DASH:
-			case PERIOD:
-			case SLASH:
-			case ZERO:
-			case ONE:
-			case TWO:
-			case THREE:
-			case FOUR:
-			case FIVE:
-			case SIX:
-			case SEVEN:
-			case EIGHT:
-			case NINE:
-			case COLON:
-			case SEMICOLON:
-			case LESS_THAN:
-			case EQUALS:
-			case GREATER_THAN:
-			case QUESTION:
-			case AT:
-			case CAP_A:
-			case CAP_B:
-			case CAP_C:
-			case CAP_D:
-			case CAP_E:
-			case CAP_F:
-			case CAP_G:
-			case CAP_H:
-			case CAP_I:
-			case CAP_J:
-			case CAP_K:
-			case CAP_L:
-			case CAP_M:
-			case CAP_N:
-			case CAP_O:
-			case CAP_P:
-			case CAP_Q:
-			case CAP_R:
-			case CAP_S:
-			case CAP_T:
-			case CAP_U:
-			case CAP_V:
-			case CAP_W:
-			case CAP_X:
-			case CAP_Y:
-			case CAP_Z:
-			case LEFT_BRACE:
-			case CARAT:
-			case UNDERSCORE:
-			case ACCENT:
-			case A:
-			case B:
-			case C:
-			case D:
-			case E:
-			case F:
-			case G:
-			case H:
-			case I:
-			case J:
-			case K:
-			case L:
-			case M:
-			case N:
-			case O:
-			case P:
-			case Q:
-			case R:
-			case S:
-			case T:
-			case U:
-			case V:
-			case W:
-			case X:
-			case Y:
-			case Z:
-			case LEFT_CURLY_BRACE:
-			case PIPE:
-			case RIGHT_CURLY_BRACE:
-			case TILDE:
-			case U_0000:
-			case U_0001:
-			case U_0002:
-			case U_0003:
-			case U_0004:
-			case U_0005:
-			case U_0006:
-			case U_0007:
-			case U_0008:
-			case U_000B:
-			case U_000C:
-			case U_000E:
-			case U_000F:
-			case U_0010:
-			case U_0011:
-			case U_0012:
-			case U_0013:
-			case U_0014:
-			case U_0015:
-			case U_0016:
-			case U_0017:
-			case U_0018:
-			case U_0019:
-			case U_001A:
-			case U_001B:
-			case U_001C:
-			case U_001D:
-			case U_001E:
-			case U_001F:
-			case U_007F:
-			case U_0080:
-			case U_0081:
-			case U_0082:
-			case U_0083:
-			case U_0084:
-			case U_0085:
-			case U_0086:
-			case U_0087:
-			case U_0088:
-			case U_0089:
-			case U_008A:
-			case U_008B:
-			case U_008C:
-			case U_008D:
-			case U_008E:
-			case U_008F:
-			case U_0090:
-			case U_0091:
-			case U_0092:
-			case U_0093:
-			case U_0094:
-			case U_0095:
-			case U_0096:
-			case U_0097:
-			case U_0098:
-			case U_0099:
-			case U_009A:
-			case U_009B:
-			case U_009C:
-			case U_009D:
-			case U_009E:
-			case U_009F:
-			case U_00A0:
-			case U_00A1:
-			case U_00A2:
-			case U_00A3:
-			case U_00A4:
-			case U_00A5:
-			case U_00A6:
-			case U_00A7:
-			case U_00A8:
-			case U_00A9:
-			case U_00AA:
-			case U_00AB:
-			case U_00AC:
-			case U_00AD:
-			case U_00AE:
-			case U_00AF:
-			case U_00B0:
-			case U_00B1:
-			case U_00B2:
-			case U_00B3:
-			case U_00B4:
-			case U_00B5:
-			case U_00B6:
-			case U_00B7:
-			case U_00B8:
-			case U_00B9:
-			case U_00BA:
-			case U_00BB:
-			case U_00BC:
-			case U_00BD:
-			case U_00BE:
-			case U_00BF:
-			case U_00C0:
-			case U_00C1:
-			case U_00C2:
-			case U_00C3:
-			case U_00C4:
-			case U_00C5:
-			case U_00C6:
-			case U_00C7:
-			case U_00C8:
-			case U_00C9:
-			case U_00CA:
-			case U_00CB:
-			case U_00CC:
-			case U_00CD:
-			case U_00CE:
-			case U_00CF:
-			case U_00D0:
-			case U_00D1:
-			case U_00D2:
-			case U_00D3:
-			case U_00D4:
-			case U_00D5:
-			case U_00D6:
-			case U_00D7:
-			case U_00D8:
-			case U_00D9:
-			case U_00DA:
-			case U_00DB:
-			case U_00DC:
-			case U_00DD:
-			case U_00DE:
-			case U_00DF:
-			case U_00E0:
-			case U_00E1:
-			case U_00E2:
-			case U_00E3:
-			case U_00E4:
-			case U_00E5:
-			case U_00E6:
-			case U_00E7:
-			case U_00E8:
-			case U_00E9:
-			case U_00EA:
-			case U_00EB:
-			case U_00EC:
-			case U_00ED:
-			case U_00EE:
-			case U_00EF:
-			case U_00F0:
-			case U_00F1:
-			case U_00F2:
-			case U_00F3:
-			case U_00F4:
-			case U_00F5:
-			case U_00F6:
-			case U_00F7:
-			case U_00F8:
-			case U_00F9:
-			case U_00FA:
-			case U_00FB:
-			case U_00FC:
-			case U_00FD:
-			case U_00FE:
-			case U_00FF:
+			setState(275);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (((((_la - 1)) & ~0x3f) == 0 && ((1L << (_la - 1)) & ((1L << (TAB - 1)) | (1L << (LF - 1)) | (1L << (CR - 1)) | (1L << (SPACE - 1)) | (1L << (EXCLAMATION - 1)) | (1L << (POUND - 1)) | (1L << (DOLLAR - 1)) | (1L << (PERCENT - 1)) | (1L << (AMPERSAND - 1)) | (1L << (APOSTROPHE - 1)) | (1L << (LEFT_PAREN - 1)) | (1L << (RIGHT_PAREN - 1)) | (1L << (ASTERISK - 1)) | (1L << (PLUS - 1)) | (1L << (COMMA - 1)) | (1L << (DASH - 1)) | (1L << (PERIOD - 1)) | (1L << (SLASH - 1)) | (1L << (ZERO - 1)) | (1L << (ONE - 1)) | (1L << (TWO - 1)) | (1L << (THREE - 1)) | (1L << (FOUR - 1)) | (1L << (FIVE - 1)) | (1L << (SIX - 1)) | (1L << (SEVEN - 1)) | (1L << (EIGHT - 1)) | (1L << (NINE - 1)) | (1L << (COLON - 1)) | (1L << (SEMICOLON - 1)) | (1L << (LESS_THAN - 1)) | (1L << (EQUALS - 1)) | (1L << (GREATER_THAN - 1)) | (1L << (QUESTION - 1)) | (1L << (AT - 1)) | (1L << (CAP_A - 1)) | (1L << (CAP_B - 1)) | (1L << (CAP_C - 1)) | (1L << (CAP_D - 1)) | (1L << (CAP_E - 1)) | (1L << (CAP_F - 1)) | (1L << (CAP_G - 1)) | (1L << (CAP_H - 1)) | (1L << (CAP_I - 1)) | (1L << (CAP_J - 1)) | (1L << (CAP_K - 1)) | (1L << (CAP_L - 1)) | (1L << (CAP_M - 1)) | (1L << (CAP_N - 1)) | (1L << (CAP_O - 1)) | (1L << (CAP_P - 1)) | (1L << (CAP_Q - 1)) | (1L << (CAP_R - 1)) | (1L << (CAP_S - 1)) | (1L << (CAP_T - 1)) | (1L << (CAP_U - 1)) | (1L << (CAP_V - 1)) | (1L << (CAP_W - 1)) | (1L << (CAP_X - 1)) | (1L << (CAP_Y - 1)) | (1L << (CAP_Z - 1)) | (1L << (LEFT_BRACE - 1)) | (1L << (BACKSLASH - 1)))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (CARAT - 66)) | (1L << (UNDERSCORE - 66)) | (1L << (ACCENT - 66)) | (1L << (A - 66)) | (1L << (B - 66)) | (1L << (C - 66)) | (1L << (D - 66)) | (1L << (E - 66)) | (1L << (F - 66)) | (1L << (G - 66)) | (1L << (H - 66)) | (1L << (I - 66)) | (1L << (J - 66)) | (1L << (K - 66)) | (1L << (L - 66)) | (1L << (M - 66)) | (1L << (N - 66)) | (1L << (O - 66)) | (1L << (P - 66)) | (1L << (Q - 66)) | (1L << (R - 66)) | (1L << (S - 66)) | (1L << (T - 66)) | (1L << (U - 66)) | (1L << (V - 66)) | (1L << (W - 66)) | (1L << (X - 66)) | (1L << (Y - 66)) | (1L << (Z - 66)) | (1L << (LEFT_CURLY_BRACE - 66)) | (1L << (PIPE - 66)) | (1L << (RIGHT_CURLY_BRACE - 66)) | (1L << (TILDE - 66)) | (1L << (U_0000 - 66)) | (1L << (U_0001 - 66)) | (1L << (U_0002 - 66)) | (1L << (U_0003 - 66)) | (1L << (U_0004 - 66)) | (1L << (U_0005 - 66)) | (1L << (U_0006 - 66)) | (1L << (U_0007 - 66)) | (1L << (U_0008 - 66)) | (1L << (U_000B - 66)) | (1L << (U_000C - 66)) | (1L << (U_000E - 66)) | (1L << (U_000F - 66)) | (1L << (U_0010 - 66)) | (1L << (U_0011 - 66)) | (1L << (U_0012 - 66)) | (1L << (U_0013 - 66)) | (1L << (U_0014 - 66)) | (1L << (U_0015 - 66)) | (1L << (U_0016 - 66)) | (1L << (U_0017 - 66)) | (1L << (U_0018 - 66)) | (1L << (U_0019 - 66)) | (1L << (U_001A - 66)) | (1L << (U_001B - 66)) | (1L << (U_001C - 66)) | (1L << (U_001D - 66)) | (1L << (U_001E - 66)) | (1L << (U_001F - 66)) | (1L << (U_007F - 66)) | (1L << (U_0080 - 66)))) != 0) || ((((_la - 130)) & ~0x3f) == 0 && ((1L << (_la - 130)) & ((1L << (U_0081 - 130)) | (1L << (U_0082 - 130)) | (1L << (U_0083 - 130)) | (1L << (U_0084 - 130)) | (1L << (U_0085 - 130)) | (1L << (U_0086 - 130)) | (1L << (U_0087 - 130)) | (1L << (U_0088 - 130)) | (1L << (U_0089 - 130)) | (1L << (U_008A - 130)) | (1L << (U_008B - 130)) | (1L << (U_008C - 130)) | (1L << (U_008D - 130)) | (1L << (U_008E - 130)) | (1L << (U_008F - 130)) | (1L << (U_0090 - 130)) | (1L << (U_0091 - 130)) | (1L << (U_0092 - 130)) | (1L << (U_0093 - 130)) | (1L << (U_0094 - 130)) | (1L << (U_0095 - 130)) | (1L << (U_0096 - 130)) | (1L << (U_0097 - 130)) | (1L << (U_0098 - 130)) | (1L << (U_0099 - 130)) | (1L << (U_009A - 130)) | (1L << (U_009B - 130)) | (1L << (U_009C - 130)) | (1L << (U_009D - 130)) | (1L << (U_009E - 130)) | (1L << (U_009F - 130)) | (1L << (U_00A0 - 130)) | (1L << (U_00A1 - 130)) | (1L << (U_00A2 - 130)) | (1L << (U_00A3 - 130)) | (1L << (U_00A4 - 130)) | (1L << (U_00A5 - 130)) | (1L << (U_00A6 - 130)) | (1L << (U_00A7 - 130)) | (1L << (U_00A8 - 130)) | (1L << (U_00A9 - 130)) | (1L << (U_00AA - 130)) | (1L << (U_00AB - 130)) | (1L << (U_00AC - 130)) | (1L << (U_00AD - 130)) | (1L << (U_00AE - 130)) | (1L << (U_00AF - 130)) | (1L << (U_00B0 - 130)) | (1L << (U_00B1 - 130)) | (1L << (U_00B2 - 130)) | (1L << (U_00B3 - 130)) | (1L << (U_00B4 - 130)) | (1L << (U_00B5 - 130)) | (1L << (U_00B6 - 130)) | (1L << (U_00B7 - 130)) | (1L << (U_00B8 - 130)) | (1L << (U_00B9 - 130)) | (1L << (U_00BA - 130)) | (1L << (U_00BB - 130)) | (1L << (U_00BC - 130)) | (1L << (U_00BD - 130)) | (1L << (U_00BE - 130)) | (1L << (U_00BF - 130)) | (1L << (U_00C0 - 130)))) != 0) || ((((_la - 194)) & ~0x3f) == 0 && ((1L << (_la - 194)) & ((1L << (U_00C1 - 194)) | (1L << (U_00C2 - 194)) | (1L << (U_00C3 - 194)) | (1L << (U_00C4 - 194)) | (1L << (U_00C5 - 194)) | (1L << (U_00C6 - 194)) | (1L << (U_00C7 - 194)) | (1L << (U_00C8 - 194)) | (1L << (U_00C9 - 194)) | (1L << (U_00CA - 194)) | (1L << (U_00CB - 194)) | (1L << (U_00CC - 194)) | (1L << (U_00CD - 194)) | (1L << (U_00CE - 194)) | (1L << (U_00CF - 194)) | (1L << (U_00D0 - 194)) | (1L << (U_00D1 - 194)) | (1L << (U_00D2 - 194)) | (1L << (U_00D3 - 194)) | (1L << (U_00D4 - 194)) | (1L << (U_00D5 - 194)) | (1L << (U_00D6 - 194)) | (1L << (U_00D7 - 194)) | (1L << (U_00D8 - 194)) | (1L << (U_00D9 - 194)) | (1L << (U_00DA - 194)) | (1L << (U_00DB - 194)) | (1L << (U_00DC - 194)) | (1L << (U_00DD - 194)) | (1L << (U_00DE - 194)) | (1L << (U_00DF - 194)) | (1L << (U_00E0 - 194)) | (1L << (U_00E1 - 194)) | (1L << (U_00E2 - 194)) | (1L << (U_00E3 - 194)) | (1L << (U_00E4 - 194)) | (1L << (U_00E5 - 194)) | (1L << (U_00E6 - 194)) | (1L << (U_00E7 - 194)) | (1L << (U_00E8 - 194)) | (1L << (U_00E9 - 194)) | (1L << (U_00EA - 194)) | (1L << (U_00EB - 194)) | (1L << (U_00EC - 194)) | (1L << (U_00ED - 194)) | (1L << (U_00EE - 194)) | (1L << (U_00EF - 194)) | (1L << (U_00F0 - 194)) | (1L << (U_00F1 - 194)) | (1L << (U_00F2 - 194)) | (1L << (U_00F3 - 194)) | (1L << (U_00F4 - 194)) | (1L << (U_00F5 - 194)) | (1L << (U_00F6 - 194)) | (1L << (U_00F7 - 194)) | (1L << (U_00F8 - 194)) | (1L << (U_00F9 - 194)) | (1L << (U_00FA - 194)) | (1L << (U_00FB - 194)) | (1L << (U_00FC - 194)) | (1L << (U_00FD - 194)) | (1L << (U_00FE - 194)) | (1L << (U_00FF - 194)))) != 0)) {
 				{
-				setState(269);
+				setState(273);
+				switch (_input.LA(1)) {
+				case TAB:
+				case LF:
+				case CR:
+				case SPACE:
+				case EXCLAMATION:
+				case POUND:
+				case DOLLAR:
+				case PERCENT:
+				case AMPERSAND:
+				case APOSTROPHE:
+				case LEFT_PAREN:
+				case RIGHT_PAREN:
+				case ASTERISK:
+				case PLUS:
+				case COMMA:
+				case DASH:
+				case PERIOD:
+				case SLASH:
+				case ZERO:
+				case ONE:
+				case TWO:
+				case THREE:
+				case FOUR:
+				case FIVE:
+				case SIX:
+				case SEVEN:
+				case EIGHT:
+				case NINE:
+				case COLON:
+				case SEMICOLON:
+				case LESS_THAN:
+				case EQUALS:
+				case GREATER_THAN:
+				case QUESTION:
+				case AT:
+				case CAP_A:
+				case CAP_B:
+				case CAP_C:
+				case CAP_D:
+				case CAP_E:
+				case CAP_F:
+				case CAP_G:
+				case CAP_H:
+				case CAP_I:
+				case CAP_J:
+				case CAP_K:
+				case CAP_L:
+				case CAP_M:
+				case CAP_N:
+				case CAP_O:
+				case CAP_P:
+				case CAP_Q:
+				case CAP_R:
+				case CAP_S:
+				case CAP_T:
+				case CAP_U:
+				case CAP_V:
+				case CAP_W:
+				case CAP_X:
+				case CAP_Y:
+				case CAP_Z:
+				case LEFT_BRACE:
+				case CARAT:
+				case UNDERSCORE:
+				case ACCENT:
+				case A:
+				case B:
+				case C:
+				case D:
+				case E:
+				case F:
+				case G:
+				case H:
+				case I:
+				case J:
+				case K:
+				case L:
+				case M:
+				case N:
+				case O:
+				case P:
+				case Q:
+				case R:
+				case S:
+				case T:
+				case U:
+				case V:
+				case W:
+				case X:
+				case Y:
+				case Z:
+				case LEFT_CURLY_BRACE:
+				case PIPE:
+				case RIGHT_CURLY_BRACE:
+				case TILDE:
+				case U_0000:
+				case U_0001:
+				case U_0002:
+				case U_0003:
+				case U_0004:
+				case U_0005:
+				case U_0006:
+				case U_0007:
+				case U_0008:
+				case U_000B:
+				case U_000C:
+				case U_000E:
+				case U_000F:
+				case U_0010:
+				case U_0011:
+				case U_0012:
+				case U_0013:
+				case U_0014:
+				case U_0015:
+				case U_0016:
+				case U_0017:
+				case U_0018:
+				case U_0019:
+				case U_001A:
+				case U_001B:
+				case U_001C:
+				case U_001D:
+				case U_001E:
+				case U_001F:
+				case U_007F:
+				case U_0080:
+				case U_0081:
+				case U_0082:
+				case U_0083:
+				case U_0084:
+				case U_0085:
+				case U_0086:
+				case U_0087:
+				case U_0088:
+				case U_0089:
+				case U_008A:
+				case U_008B:
+				case U_008C:
+				case U_008D:
+				case U_008E:
+				case U_008F:
+				case U_0090:
+				case U_0091:
+				case U_0092:
+				case U_0093:
+				case U_0094:
+				case U_0095:
+				case U_0096:
+				case U_0097:
+				case U_0098:
+				case U_0099:
+				case U_009A:
+				case U_009B:
+				case U_009C:
+				case U_009D:
+				case U_009E:
+				case U_009F:
+				case U_00A0:
+				case U_00A1:
+				case U_00A2:
+				case U_00A3:
+				case U_00A4:
+				case U_00A5:
+				case U_00A6:
+				case U_00A7:
+				case U_00A8:
+				case U_00A9:
+				case U_00AA:
+				case U_00AB:
+				case U_00AC:
+				case U_00AD:
+				case U_00AE:
+				case U_00AF:
+				case U_00B0:
+				case U_00B1:
+				case U_00B2:
+				case U_00B3:
+				case U_00B4:
+				case U_00B5:
+				case U_00B6:
+				case U_00B7:
+				case U_00B8:
+				case U_00B9:
+				case U_00BA:
+				case U_00BB:
+				case U_00BC:
+				case U_00BD:
+				case U_00BE:
+				case U_00BF:
+				case U_00C0:
+				case U_00C1:
+				case U_00C2:
+				case U_00C3:
+				case U_00C4:
+				case U_00C5:
+				case U_00C6:
+				case U_00C7:
+				case U_00C8:
+				case U_00C9:
+				case U_00CA:
+				case U_00CB:
+				case U_00CC:
+				case U_00CD:
+				case U_00CE:
+				case U_00CF:
+				case U_00D0:
+				case U_00D1:
+				case U_00D2:
+				case U_00D3:
+				case U_00D4:
+				case U_00D5:
+				case U_00D6:
+				case U_00D7:
+				case U_00D8:
+				case U_00D9:
+				case U_00DA:
+				case U_00DB:
+				case U_00DC:
+				case U_00DD:
+				case U_00DE:
+				case U_00DF:
+				case U_00E0:
+				case U_00E1:
+				case U_00E2:
+				case U_00E3:
+				case U_00E4:
+				case U_00E5:
+				case U_00E6:
+				case U_00E7:
+				case U_00E8:
+				case U_00E9:
+				case U_00EA:
+				case U_00EB:
+				case U_00EC:
+				case U_00ED:
+				case U_00EE:
+				case U_00EF:
+				case U_00F0:
+				case U_00F1:
+				case U_00F2:
+				case U_00F3:
+				case U_00F4:
+				case U_00F5:
+				case U_00F6:
+				case U_00F7:
+				case U_00F8:
+				case U_00F9:
+				case U_00FA:
+				case U_00FB:
+				case U_00FC:
+				case U_00FD:
+				case U_00FE:
+				case U_00FF:
+					{
+					setState(270);
+					_la = _input.LA(1);
+					if ( _la <= 0 || (((((_la - 6)) & ~0x3f) == 0 && ((1L << (_la - 6)) & ((1L << (QUOTE - 6)) | (1L << (BACKSLASH - 6)) | (1L << (RIGHT_BRACE - 6)))) != 0)) ) {
+					_errHandler.recoverInline(this);
+					} else {
+						consume();
+					}
+					}
+					break;
+				case BACKSLASH:
+					{
+					setState(271);
+					match(BACKSLASH);
+					setState(272);
+					_la = _input.LA(1);
+					if ( !(((((_la - 6)) & ~0x3f) == 0 && ((1L << (_la - 6)) & ((1L << (QUOTE - 6)) | (1L << (BACKSLASH - 6)) | (1L << (RIGHT_BRACE - 6)))) != 0)) ) {
+					_errHandler.recoverInline(this);
+					} else {
+						consume();
+					}
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				setState(277);
+				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ( _la <= 0 || (((((_la - 6)) & ~0x3f) == 0 && ((1L << (_la - 6)) & ((1L << (QUOTE - 6)) | (1L << (BACKSLASH - 6)) | (1L << (RIGHT_BRACE - 6)))) != 0)) ) {
-				_errHandler.recoverInline(this);
-				} else {
-					consume();
-				}
-				}
-				break;
-			case BACKSLASH:
-				{
-				setState(270);
-				match(BACKSLASH);
-				setState(271);
-				_la = _input.LA(1);
-				if ( !(((((_la - 6)) & ~0x3f) == 0 && ((1L << (_la - 6)) & ((1L << (QUOTE - 6)) | (1L << (BACKSLASH - 6)) | (1L << (RIGHT_BRACE - 6)))) != 0)) ) {
-				_errHandler.recoverInline(this);
-				} else {
-					consume();
-				}
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
 			}
-			setState(274);
-			utf_8_string();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2628,17 +2700,17 @@ public class Rfc5424Parser extends Parser {
 			_localctx = new NameContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(279);
+			setState(281);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EXCLAMATION) | (1L << POUND) | (1L << DOLLAR) | (1L << PERCENT) | (1L << AMPERSAND) | (1L << APOSTROPHE) | (1L << LEFT_PAREN) | (1L << RIGHT_PAREN) | (1L << ASTERISK) | (1L << PLUS) | (1L << COMMA) | (1L << DASH) | (1L << PERIOD) | (1L << SLASH) | (1L << ZERO) | (1L << ONE) | (1L << TWO) | (1L << THREE) | (1L << FOUR) | (1L << FIVE) | (1L << SIX) | (1L << SEVEN) | (1L << EIGHT) | (1L << NINE) | (1L << COLON) | (1L << SEMICOLON) | (1L << LESS_THAN) | (1L << GREATER_THAN) | (1L << QUESTION) | (1L << AT) | (1L << CAP_A) | (1L << CAP_B) | (1L << CAP_C) | (1L << CAP_D) | (1L << CAP_E) | (1L << CAP_F) | (1L << CAP_G) | (1L << CAP_H) | (1L << CAP_I) | (1L << CAP_J) | (1L << CAP_K) | (1L << CAP_L) | (1L << CAP_M) | (1L << CAP_N) | (1L << CAP_O) | (1L << CAP_P) | (1L << CAP_Q) | (1L << CAP_R) | (1L << CAP_S) | (1L << CAP_T) | (1L << CAP_U) | (1L << CAP_V) | (1L << CAP_W) | (1L << CAP_X) | (1L << CAP_Y) | (1L << CAP_Z) | (1L << LEFT_BRACE))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (BACKSLASH - 64)) | (1L << (CARAT - 64)) | (1L << (UNDERSCORE - 64)) | (1L << (ACCENT - 64)) | (1L << (A - 64)) | (1L << (B - 64)) | (1L << (C - 64)) | (1L << (D - 64)) | (1L << (E - 64)) | (1L << (F - 64)) | (1L << (G - 64)) | (1L << (H - 64)) | (1L << (I - 64)) | (1L << (J - 64)) | (1L << (K - 64)) | (1L << (L - 64)) | (1L << (M - 64)) | (1L << (N - 64)) | (1L << (O - 64)) | (1L << (P - 64)) | (1L << (Q - 64)) | (1L << (R - 64)) | (1L << (S - 64)) | (1L << (T - 64)) | (1L << (U - 64)) | (1L << (V - 64)) | (1L << (W - 64)) | (1L << (X - 64)) | (1L << (Y - 64)) | (1L << (Z - 64)) | (1L << (LEFT_CURLY_BRACE - 64)) | (1L << (PIPE - 64)) | (1L << (RIGHT_CURLY_BRACE - 64)) | (1L << (TILDE - 64)))) != 0)) {
 				{
 				{
-				setState(276);
+				setState(278);
 				printusasciinospecials();
 				}
 				}
-				setState(281);
+				setState(283);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -2709,13 +2781,13 @@ public class Rfc5424Parser extends Parser {
 		MsgContext _localctx = new MsgContext(_ctx, getState());
 		enterRule(_localctx, 58, RULE_msg);
 		try {
-			setState(284);
-			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
+			setState(286);
+			switch ( getInterpreter().adaptivePredict(_input,24,_ctx) ) {
 			case 1:
 				_localctx = new MsgAnyContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(282);
+				setState(284);
 				msg_any();
 				}
 				break;
@@ -2723,7 +2795,7 @@ public class Rfc5424Parser extends Parser {
 				_localctx = new MsgUTF8Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(283);
+				setState(285);
 				msg_utf8();
 				}
 				break;
@@ -2773,17 +2845,17 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(289);
+			setState(291);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (((((_la - 1)) & ~0x3f) == 0 && ((1L << (_la - 1)) & ((1L << (TAB - 1)) | (1L << (LF - 1)) | (1L << (CR - 1)) | (1L << (SPACE - 1)) | (1L << (EXCLAMATION - 1)) | (1L << (QUOTE - 1)) | (1L << (POUND - 1)) | (1L << (DOLLAR - 1)) | (1L << (PERCENT - 1)) | (1L << (AMPERSAND - 1)) | (1L << (APOSTROPHE - 1)) | (1L << (LEFT_PAREN - 1)) | (1L << (RIGHT_PAREN - 1)) | (1L << (ASTERISK - 1)) | (1L << (PLUS - 1)) | (1L << (COMMA - 1)) | (1L << (DASH - 1)) | (1L << (PERIOD - 1)) | (1L << (SLASH - 1)) | (1L << (ZERO - 1)) | (1L << (ONE - 1)) | (1L << (TWO - 1)) | (1L << (THREE - 1)) | (1L << (FOUR - 1)) | (1L << (FIVE - 1)) | (1L << (SIX - 1)) | (1L << (SEVEN - 1)) | (1L << (EIGHT - 1)) | (1L << (NINE - 1)) | (1L << (COLON - 1)) | (1L << (SEMICOLON - 1)) | (1L << (LESS_THAN - 1)) | (1L << (EQUALS - 1)) | (1L << (GREATER_THAN - 1)) | (1L << (QUESTION - 1)) | (1L << (AT - 1)) | (1L << (CAP_A - 1)) | (1L << (CAP_B - 1)) | (1L << (CAP_C - 1)) | (1L << (CAP_D - 1)) | (1L << (CAP_E - 1)) | (1L << (CAP_F - 1)) | (1L << (CAP_G - 1)) | (1L << (CAP_H - 1)) | (1L << (CAP_I - 1)) | (1L << (CAP_J - 1)) | (1L << (CAP_K - 1)) | (1L << (CAP_L - 1)) | (1L << (CAP_M - 1)) | (1L << (CAP_N - 1)) | (1L << (CAP_O - 1)) | (1L << (CAP_P - 1)) | (1L << (CAP_Q - 1)) | (1L << (CAP_R - 1)) | (1L << (CAP_S - 1)) | (1L << (CAP_T - 1)) | (1L << (CAP_U - 1)) | (1L << (CAP_V - 1)) | (1L << (CAP_W - 1)) | (1L << (CAP_X - 1)) | (1L << (CAP_Y - 1)) | (1L << (CAP_Z - 1)) | (1L << (LEFT_BRACE - 1)) | (1L << (BACKSLASH - 1)))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (RIGHT_BRACE - 65)) | (1L << (CARAT - 65)) | (1L << (UNDERSCORE - 65)) | (1L << (ACCENT - 65)) | (1L << (A - 65)) | (1L << (B - 65)) | (1L << (C - 65)) | (1L << (D - 65)) | (1L << (E - 65)) | (1L << (F - 65)) | (1L << (G - 65)) | (1L << (H - 65)) | (1L << (I - 65)) | (1L << (J - 65)) | (1L << (K - 65)) | (1L << (L - 65)) | (1L << (M - 65)) | (1L << (N - 65)) | (1L << (O - 65)) | (1L << (P - 65)) | (1L << (Q - 65)) | (1L << (R - 65)) | (1L << (S - 65)) | (1L << (T - 65)) | (1L << (U - 65)) | (1L << (V - 65)) | (1L << (W - 65)) | (1L << (X - 65)) | (1L << (Y - 65)) | (1L << (Z - 65)) | (1L << (LEFT_CURLY_BRACE - 65)) | (1L << (PIPE - 65)) | (1L << (RIGHT_CURLY_BRACE - 65)) | (1L << (TILDE - 65)) | (1L << (U_0000 - 65)) | (1L << (U_0001 - 65)) | (1L << (U_0002 - 65)) | (1L << (U_0003 - 65)) | (1L << (U_0004 - 65)) | (1L << (U_0005 - 65)) | (1L << (U_0006 - 65)) | (1L << (U_0007 - 65)) | (1L << (U_0008 - 65)) | (1L << (U_000B - 65)) | (1L << (U_000C - 65)) | (1L << (U_000E - 65)) | (1L << (U_000F - 65)) | (1L << (U_0010 - 65)) | (1L << (U_0011 - 65)) | (1L << (U_0012 - 65)) | (1L << (U_0013 - 65)) | (1L << (U_0014 - 65)) | (1L << (U_0015 - 65)) | (1L << (U_0016 - 65)) | (1L << (U_0017 - 65)) | (1L << (U_0018 - 65)) | (1L << (U_0019 - 65)) | (1L << (U_001A - 65)) | (1L << (U_001B - 65)) | (1L << (U_001C - 65)) | (1L << (U_001D - 65)) | (1L << (U_001E - 65)) | (1L << (U_001F - 65)) | (1L << (U_007F - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (U_0080 - 129)) | (1L << (U_0081 - 129)) | (1L << (U_0082 - 129)) | (1L << (U_0083 - 129)) | (1L << (U_0084 - 129)) | (1L << (U_0085 - 129)) | (1L << (U_0086 - 129)) | (1L << (U_0087 - 129)) | (1L << (U_0088 - 129)) | (1L << (U_0089 - 129)) | (1L << (U_008A - 129)) | (1L << (U_008B - 129)) | (1L << (U_008C - 129)) | (1L << (U_008D - 129)) | (1L << (U_008E - 129)) | (1L << (U_008F - 129)) | (1L << (U_0090 - 129)) | (1L << (U_0091 - 129)) | (1L << (U_0092 - 129)) | (1L << (U_0093 - 129)) | (1L << (U_0094 - 129)) | (1L << (U_0095 - 129)) | (1L << (U_0096 - 129)) | (1L << (U_0097 - 129)) | (1L << (U_0098 - 129)) | (1L << (U_0099 - 129)) | (1L << (U_009A - 129)) | (1L << (U_009B - 129)) | (1L << (U_009C - 129)) | (1L << (U_009D - 129)) | (1L << (U_009E - 129)) | (1L << (U_009F - 129)) | (1L << (U_00A0 - 129)) | (1L << (U_00A1 - 129)) | (1L << (U_00A2 - 129)) | (1L << (U_00A3 - 129)) | (1L << (U_00A4 - 129)) | (1L << (U_00A5 - 129)) | (1L << (U_00A6 - 129)) | (1L << (U_00A7 - 129)) | (1L << (U_00A8 - 129)) | (1L << (U_00A9 - 129)) | (1L << (U_00AA - 129)) | (1L << (U_00AB - 129)) | (1L << (U_00AC - 129)) | (1L << (U_00AD - 129)) | (1L << (U_00AE - 129)) | (1L << (U_00AF - 129)) | (1L << (U_00B0 - 129)) | (1L << (U_00B1 - 129)) | (1L << (U_00B2 - 129)) | (1L << (U_00B3 - 129)) | (1L << (U_00B4 - 129)) | (1L << (U_00B5 - 129)) | (1L << (U_00B6 - 129)) | (1L << (U_00B7 - 129)) | (1L << (U_00B8 - 129)) | (1L << (U_00B9 - 129)) | (1L << (U_00BA - 129)) | (1L << (U_00BB - 129)) | (1L << (U_00BC - 129)) | (1L << (U_00BD - 129)) | (1L << (U_00BE - 129)) | (1L << (U_00BF - 129)))) != 0) || ((((_la - 193)) & ~0x3f) == 0 && ((1L << (_la - 193)) & ((1L << (U_00C0 - 193)) | (1L << (U_00C1 - 193)) | (1L << (U_00C2 - 193)) | (1L << (U_00C3 - 193)) | (1L << (U_00C4 - 193)) | (1L << (U_00C5 - 193)) | (1L << (U_00C6 - 193)) | (1L << (U_00C7 - 193)) | (1L << (U_00C8 - 193)) | (1L << (U_00C9 - 193)) | (1L << (U_00CA - 193)) | (1L << (U_00CB - 193)) | (1L << (U_00CC - 193)) | (1L << (U_00CD - 193)) | (1L << (U_00CE - 193)) | (1L << (U_00CF - 193)) | (1L << (U_00D0 - 193)) | (1L << (U_00D1 - 193)) | (1L << (U_00D2 - 193)) | (1L << (U_00D3 - 193)) | (1L << (U_00D4 - 193)) | (1L << (U_00D5 - 193)) | (1L << (U_00D6 - 193)) | (1L << (U_00D7 - 193)) | (1L << (U_00D8 - 193)) | (1L << (U_00D9 - 193)) | (1L << (U_00DA - 193)) | (1L << (U_00DB - 193)) | (1L << (U_00DC - 193)) | (1L << (U_00DD - 193)) | (1L << (U_00DE - 193)) | (1L << (U_00DF - 193)) | (1L << (U_00E0 - 193)) | (1L << (U_00E1 - 193)) | (1L << (U_00E2 - 193)) | (1L << (U_00E3 - 193)) | (1L << (U_00E4 - 193)) | (1L << (U_00E5 - 193)) | (1L << (U_00E6 - 193)) | (1L << (U_00E7 - 193)) | (1L << (U_00E8 - 193)) | (1L << (U_00E9 - 193)) | (1L << (U_00EA - 193)) | (1L << (U_00EB - 193)) | (1L << (U_00EC - 193)) | (1L << (U_00ED - 193)) | (1L << (U_00EE - 193)) | (1L << (U_00EF - 193)) | (1L << (U_00F0 - 193)) | (1L << (U_00F1 - 193)) | (1L << (U_00F2 - 193)) | (1L << (U_00F3 - 193)) | (1L << (U_00F4 - 193)) | (1L << (U_00F5 - 193)) | (1L << (U_00F6 - 193)) | (1L << (U_00F7 - 193)) | (1L << (U_00F8 - 193)) | (1L << (U_00F9 - 193)) | (1L << (U_00FA - 193)) | (1L << (U_00FB - 193)) | (1L << (U_00FC - 193)) | (1L << (U_00FD - 193)) | (1L << (U_00FE - 193)) | (1L << (U_00FF - 193)))) != 0)) {
 				{
 				{
-				setState(286);
+				setState(288);
 				octet();
 				}
 				}
-				setState(291);
+				setState(293);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -2832,9 +2904,9 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(292);
+			setState(294);
 			bom();
-			setState(293);
+			setState(295);
 			utf_8_string();
 			}
 		}
@@ -2879,7 +2951,7 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(295);
+			setState(297);
 			_la = _input.LA(1);
 			if ( !(((((_la - 188)) & ~0x3f) == 0 && ((1L << (_la - 188)) & ((1L << (U_00BB - 188)) | (1L << (U_00BF - 188)) | (1L << (U_00EF - 188)))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2928,25 +3000,23 @@ public class Rfc5424Parser extends Parser {
 	public final Utf_8_stringContext utf_8_string() throws RecognitionException {
 		Utf_8_stringContext _localctx = new Utf_8_stringContext(_ctx, getState());
 		enterRule(_localctx, 66, RULE_utf_8_string);
+		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(300);
+			setState(302);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(297);
-					octet();
-					}
-					} 
+			_la = _input.LA(1);
+			while (((((_la - 1)) & ~0x3f) == 0 && ((1L << (_la - 1)) & ((1L << (TAB - 1)) | (1L << (LF - 1)) | (1L << (CR - 1)) | (1L << (SPACE - 1)) | (1L << (EXCLAMATION - 1)) | (1L << (QUOTE - 1)) | (1L << (POUND - 1)) | (1L << (DOLLAR - 1)) | (1L << (PERCENT - 1)) | (1L << (AMPERSAND - 1)) | (1L << (APOSTROPHE - 1)) | (1L << (LEFT_PAREN - 1)) | (1L << (RIGHT_PAREN - 1)) | (1L << (ASTERISK - 1)) | (1L << (PLUS - 1)) | (1L << (COMMA - 1)) | (1L << (DASH - 1)) | (1L << (PERIOD - 1)) | (1L << (SLASH - 1)) | (1L << (ZERO - 1)) | (1L << (ONE - 1)) | (1L << (TWO - 1)) | (1L << (THREE - 1)) | (1L << (FOUR - 1)) | (1L << (FIVE - 1)) | (1L << (SIX - 1)) | (1L << (SEVEN - 1)) | (1L << (EIGHT - 1)) | (1L << (NINE - 1)) | (1L << (COLON - 1)) | (1L << (SEMICOLON - 1)) | (1L << (LESS_THAN - 1)) | (1L << (EQUALS - 1)) | (1L << (GREATER_THAN - 1)) | (1L << (QUESTION - 1)) | (1L << (AT - 1)) | (1L << (CAP_A - 1)) | (1L << (CAP_B - 1)) | (1L << (CAP_C - 1)) | (1L << (CAP_D - 1)) | (1L << (CAP_E - 1)) | (1L << (CAP_F - 1)) | (1L << (CAP_G - 1)) | (1L << (CAP_H - 1)) | (1L << (CAP_I - 1)) | (1L << (CAP_J - 1)) | (1L << (CAP_K - 1)) | (1L << (CAP_L - 1)) | (1L << (CAP_M - 1)) | (1L << (CAP_N - 1)) | (1L << (CAP_O - 1)) | (1L << (CAP_P - 1)) | (1L << (CAP_Q - 1)) | (1L << (CAP_R - 1)) | (1L << (CAP_S - 1)) | (1L << (CAP_T - 1)) | (1L << (CAP_U - 1)) | (1L << (CAP_V - 1)) | (1L << (CAP_W - 1)) | (1L << (CAP_X - 1)) | (1L << (CAP_Y - 1)) | (1L << (CAP_Z - 1)) | (1L << (LEFT_BRACE - 1)) | (1L << (BACKSLASH - 1)))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (RIGHT_BRACE - 65)) | (1L << (CARAT - 65)) | (1L << (UNDERSCORE - 65)) | (1L << (ACCENT - 65)) | (1L << (A - 65)) | (1L << (B - 65)) | (1L << (C - 65)) | (1L << (D - 65)) | (1L << (E - 65)) | (1L << (F - 65)) | (1L << (G - 65)) | (1L << (H - 65)) | (1L << (I - 65)) | (1L << (J - 65)) | (1L << (K - 65)) | (1L << (L - 65)) | (1L << (M - 65)) | (1L << (N - 65)) | (1L << (O - 65)) | (1L << (P - 65)) | (1L << (Q - 65)) | (1L << (R - 65)) | (1L << (S - 65)) | (1L << (T - 65)) | (1L << (U - 65)) | (1L << (V - 65)) | (1L << (W - 65)) | (1L << (X - 65)) | (1L << (Y - 65)) | (1L << (Z - 65)) | (1L << (LEFT_CURLY_BRACE - 65)) | (1L << (PIPE - 65)) | (1L << (RIGHT_CURLY_BRACE - 65)) | (1L << (TILDE - 65)) | (1L << (U_0000 - 65)) | (1L << (U_0001 - 65)) | (1L << (U_0002 - 65)) | (1L << (U_0003 - 65)) | (1L << (U_0004 - 65)) | (1L << (U_0005 - 65)) | (1L << (U_0006 - 65)) | (1L << (U_0007 - 65)) | (1L << (U_0008 - 65)) | (1L << (U_000B - 65)) | (1L << (U_000C - 65)) | (1L << (U_000E - 65)) | (1L << (U_000F - 65)) | (1L << (U_0010 - 65)) | (1L << (U_0011 - 65)) | (1L << (U_0012 - 65)) | (1L << (U_0013 - 65)) | (1L << (U_0014 - 65)) | (1L << (U_0015 - 65)) | (1L << (U_0016 - 65)) | (1L << (U_0017 - 65)) | (1L << (U_0018 - 65)) | (1L << (U_0019 - 65)) | (1L << (U_001A - 65)) | (1L << (U_001B - 65)) | (1L << (U_001C - 65)) | (1L << (U_001D - 65)) | (1L << (U_001E - 65)) | (1L << (U_001F - 65)) | (1L << (U_007F - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (U_0080 - 129)) | (1L << (U_0081 - 129)) | (1L << (U_0082 - 129)) | (1L << (U_0083 - 129)) | (1L << (U_0084 - 129)) | (1L << (U_0085 - 129)) | (1L << (U_0086 - 129)) | (1L << (U_0087 - 129)) | (1L << (U_0088 - 129)) | (1L << (U_0089 - 129)) | (1L << (U_008A - 129)) | (1L << (U_008B - 129)) | (1L << (U_008C - 129)) | (1L << (U_008D - 129)) | (1L << (U_008E - 129)) | (1L << (U_008F - 129)) | (1L << (U_0090 - 129)) | (1L << (U_0091 - 129)) | (1L << (U_0092 - 129)) | (1L << (U_0093 - 129)) | (1L << (U_0094 - 129)) | (1L << (U_0095 - 129)) | (1L << (U_0096 - 129)) | (1L << (U_0097 - 129)) | (1L << (U_0098 - 129)) | (1L << (U_0099 - 129)) | (1L << (U_009A - 129)) | (1L << (U_009B - 129)) | (1L << (U_009C - 129)) | (1L << (U_009D - 129)) | (1L << (U_009E - 129)) | (1L << (U_009F - 129)) | (1L << (U_00A0 - 129)) | (1L << (U_00A1 - 129)) | (1L << (U_00A2 - 129)) | (1L << (U_00A3 - 129)) | (1L << (U_00A4 - 129)) | (1L << (U_00A5 - 129)) | (1L << (U_00A6 - 129)) | (1L << (U_00A7 - 129)) | (1L << (U_00A8 - 129)) | (1L << (U_00A9 - 129)) | (1L << (U_00AA - 129)) | (1L << (U_00AB - 129)) | (1L << (U_00AC - 129)) | (1L << (U_00AD - 129)) | (1L << (U_00AE - 129)) | (1L << (U_00AF - 129)) | (1L << (U_00B0 - 129)) | (1L << (U_00B1 - 129)) | (1L << (U_00B2 - 129)) | (1L << (U_00B3 - 129)) | (1L << (U_00B4 - 129)) | (1L << (U_00B5 - 129)) | (1L << (U_00B6 - 129)) | (1L << (U_00B7 - 129)) | (1L << (U_00B8 - 129)) | (1L << (U_00B9 - 129)) | (1L << (U_00BA - 129)) | (1L << (U_00BB - 129)) | (1L << (U_00BC - 129)) | (1L << (U_00BD - 129)) | (1L << (U_00BE - 129)) | (1L << (U_00BF - 129)))) != 0) || ((((_la - 193)) & ~0x3f) == 0 && ((1L << (_la - 193)) & ((1L << (U_00C0 - 193)) | (1L << (U_00C1 - 193)) | (1L << (U_00C2 - 193)) | (1L << (U_00C3 - 193)) | (1L << (U_00C4 - 193)) | (1L << (U_00C5 - 193)) | (1L << (U_00C6 - 193)) | (1L << (U_00C7 - 193)) | (1L << (U_00C8 - 193)) | (1L << (U_00C9 - 193)) | (1L << (U_00CA - 193)) | (1L << (U_00CB - 193)) | (1L << (U_00CC - 193)) | (1L << (U_00CD - 193)) | (1L << (U_00CE - 193)) | (1L << (U_00CF - 193)) | (1L << (U_00D0 - 193)) | (1L << (U_00D1 - 193)) | (1L << (U_00D2 - 193)) | (1L << (U_00D3 - 193)) | (1L << (U_00D4 - 193)) | (1L << (U_00D5 - 193)) | (1L << (U_00D6 - 193)) | (1L << (U_00D7 - 193)) | (1L << (U_00D8 - 193)) | (1L << (U_00D9 - 193)) | (1L << (U_00DA - 193)) | (1L << (U_00DB - 193)) | (1L << (U_00DC - 193)) | (1L << (U_00DD - 193)) | (1L << (U_00DE - 193)) | (1L << (U_00DF - 193)) | (1L << (U_00E0 - 193)) | (1L << (U_00E1 - 193)) | (1L << (U_00E2 - 193)) | (1L << (U_00E3 - 193)) | (1L << (U_00E4 - 193)) | (1L << (U_00E5 - 193)) | (1L << (U_00E6 - 193)) | (1L << (U_00E7 - 193)) | (1L << (U_00E8 - 193)) | (1L << (U_00E9 - 193)) | (1L << (U_00EA - 193)) | (1L << (U_00EB - 193)) | (1L << (U_00EC - 193)) | (1L << (U_00ED - 193)) | (1L << (U_00EE - 193)) | (1L << (U_00EF - 193)) | (1L << (U_00F0 - 193)) | (1L << (U_00F1 - 193)) | (1L << (U_00F2 - 193)) | (1L << (U_00F3 - 193)) | (1L << (U_00F4 - 193)) | (1L << (U_00F5 - 193)) | (1L << (U_00F6 - 193)) | (1L << (U_00F7 - 193)) | (1L << (U_00F8 - 193)) | (1L << (U_00F9 - 193)) | (1L << (U_00FA - 193)) | (1L << (U_00FB - 193)) | (1L << (U_00FC - 193)) | (1L << (U_00FD - 193)) | (1L << (U_00FE - 193)) | (1L << (U_00FF - 193)))) != 0)) {
+				{
+				{
+				setState(299);
+				octet();
 				}
-				setState(302);
+				}
+				setState(304);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
+				_la = _input.LA(1);
 			}
 			}
 		}
@@ -3244,7 +3314,7 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(303);
+			setState(305);
 			_la = _input.LA(1);
 			if ( !(((((_la - 1)) & ~0x3f) == 0 && ((1L << (_la - 1)) & ((1L << (TAB - 1)) | (1L << (LF - 1)) | (1L << (CR - 1)) | (1L << (SPACE - 1)) | (1L << (EXCLAMATION - 1)) | (1L << (QUOTE - 1)) | (1L << (POUND - 1)) | (1L << (DOLLAR - 1)) | (1L << (PERCENT - 1)) | (1L << (AMPERSAND - 1)) | (1L << (APOSTROPHE - 1)) | (1L << (LEFT_PAREN - 1)) | (1L << (RIGHT_PAREN - 1)) | (1L << (ASTERISK - 1)) | (1L << (PLUS - 1)) | (1L << (COMMA - 1)) | (1L << (DASH - 1)) | (1L << (PERIOD - 1)) | (1L << (SLASH - 1)) | (1L << (ZERO - 1)) | (1L << (ONE - 1)) | (1L << (TWO - 1)) | (1L << (THREE - 1)) | (1L << (FOUR - 1)) | (1L << (FIVE - 1)) | (1L << (SIX - 1)) | (1L << (SEVEN - 1)) | (1L << (EIGHT - 1)) | (1L << (NINE - 1)) | (1L << (COLON - 1)) | (1L << (SEMICOLON - 1)) | (1L << (LESS_THAN - 1)) | (1L << (EQUALS - 1)) | (1L << (GREATER_THAN - 1)) | (1L << (QUESTION - 1)) | (1L << (AT - 1)) | (1L << (CAP_A - 1)) | (1L << (CAP_B - 1)) | (1L << (CAP_C - 1)) | (1L << (CAP_D - 1)) | (1L << (CAP_E - 1)) | (1L << (CAP_F - 1)) | (1L << (CAP_G - 1)) | (1L << (CAP_H - 1)) | (1L << (CAP_I - 1)) | (1L << (CAP_J - 1)) | (1L << (CAP_K - 1)) | (1L << (CAP_L - 1)) | (1L << (CAP_M - 1)) | (1L << (CAP_N - 1)) | (1L << (CAP_O - 1)) | (1L << (CAP_P - 1)) | (1L << (CAP_Q - 1)) | (1L << (CAP_R - 1)) | (1L << (CAP_S - 1)) | (1L << (CAP_T - 1)) | (1L << (CAP_U - 1)) | (1L << (CAP_V - 1)) | (1L << (CAP_W - 1)) | (1L << (CAP_X - 1)) | (1L << (CAP_Y - 1)) | (1L << (CAP_Z - 1)) | (1L << (LEFT_BRACE - 1)) | (1L << (BACKSLASH - 1)))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (RIGHT_BRACE - 65)) | (1L << (CARAT - 65)) | (1L << (UNDERSCORE - 65)) | (1L << (ACCENT - 65)) | (1L << (A - 65)) | (1L << (B - 65)) | (1L << (C - 65)) | (1L << (D - 65)) | (1L << (E - 65)) | (1L << (F - 65)) | (1L << (G - 65)) | (1L << (H - 65)) | (1L << (I - 65)) | (1L << (J - 65)) | (1L << (K - 65)) | (1L << (L - 65)) | (1L << (M - 65)) | (1L << (N - 65)) | (1L << (O - 65)) | (1L << (P - 65)) | (1L << (Q - 65)) | (1L << (R - 65)) | (1L << (S - 65)) | (1L << (T - 65)) | (1L << (U - 65)) | (1L << (V - 65)) | (1L << (W - 65)) | (1L << (X - 65)) | (1L << (Y - 65)) | (1L << (Z - 65)) | (1L << (LEFT_CURLY_BRACE - 65)) | (1L << (PIPE - 65)) | (1L << (RIGHT_CURLY_BRACE - 65)) | (1L << (TILDE - 65)) | (1L << (U_0000 - 65)) | (1L << (U_0001 - 65)) | (1L << (U_0002 - 65)) | (1L << (U_0003 - 65)) | (1L << (U_0004 - 65)) | (1L << (U_0005 - 65)) | (1L << (U_0006 - 65)) | (1L << (U_0007 - 65)) | (1L << (U_0008 - 65)) | (1L << (U_000B - 65)) | (1L << (U_000C - 65)) | (1L << (U_000E - 65)) | (1L << (U_000F - 65)) | (1L << (U_0010 - 65)) | (1L << (U_0011 - 65)) | (1L << (U_0012 - 65)) | (1L << (U_0013 - 65)) | (1L << (U_0014 - 65)) | (1L << (U_0015 - 65)) | (1L << (U_0016 - 65)) | (1L << (U_0017 - 65)) | (1L << (U_0018 - 65)) | (1L << (U_0019 - 65)) | (1L << (U_001A - 65)) | (1L << (U_001B - 65)) | (1L << (U_001C - 65)) | (1L << (U_001D - 65)) | (1L << (U_001E - 65)) | (1L << (U_001F - 65)) | (1L << (U_007F - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (U_0080 - 129)) | (1L << (U_0081 - 129)) | (1L << (U_0082 - 129)) | (1L << (U_0083 - 129)) | (1L << (U_0084 - 129)) | (1L << (U_0085 - 129)) | (1L << (U_0086 - 129)) | (1L << (U_0087 - 129)) | (1L << (U_0088 - 129)) | (1L << (U_0089 - 129)) | (1L << (U_008A - 129)) | (1L << (U_008B - 129)) | (1L << (U_008C - 129)) | (1L << (U_008D - 129)) | (1L << (U_008E - 129)) | (1L << (U_008F - 129)) | (1L << (U_0090 - 129)) | (1L << (U_0091 - 129)) | (1L << (U_0092 - 129)) | (1L << (U_0093 - 129)) | (1L << (U_0094 - 129)) | (1L << (U_0095 - 129)) | (1L << (U_0096 - 129)) | (1L << (U_0097 - 129)) | (1L << (U_0098 - 129)) | (1L << (U_0099 - 129)) | (1L << (U_009A - 129)) | (1L << (U_009B - 129)) | (1L << (U_009C - 129)) | (1L << (U_009D - 129)) | (1L << (U_009E - 129)) | (1L << (U_009F - 129)) | (1L << (U_00A0 - 129)) | (1L << (U_00A1 - 129)) | (1L << (U_00A2 - 129)) | (1L << (U_00A3 - 129)) | (1L << (U_00A4 - 129)) | (1L << (U_00A5 - 129)) | (1L << (U_00A6 - 129)) | (1L << (U_00A7 - 129)) | (1L << (U_00A8 - 129)) | (1L << (U_00A9 - 129)) | (1L << (U_00AA - 129)) | (1L << (U_00AB - 129)) | (1L << (U_00AC - 129)) | (1L << (U_00AD - 129)) | (1L << (U_00AE - 129)) | (1L << (U_00AF - 129)) | (1L << (U_00B0 - 129)) | (1L << (U_00B1 - 129)) | (1L << (U_00B2 - 129)) | (1L << (U_00B3 - 129)) | (1L << (U_00B4 - 129)) | (1L << (U_00B5 - 129)) | (1L << (U_00B6 - 129)) | (1L << (U_00B7 - 129)) | (1L << (U_00B8 - 129)) | (1L << (U_00B9 - 129)) | (1L << (U_00BA - 129)) | (1L << (U_00BB - 129)) | (1L << (U_00BC - 129)) | (1L << (U_00BD - 129)) | (1L << (U_00BE - 129)) | (1L << (U_00BF - 129)))) != 0) || ((((_la - 193)) & ~0x3f) == 0 && ((1L << (_la - 193)) & ((1L << (U_00C0 - 193)) | (1L << (U_00C1 - 193)) | (1L << (U_00C2 - 193)) | (1L << (U_00C3 - 193)) | (1L << (U_00C4 - 193)) | (1L << (U_00C5 - 193)) | (1L << (U_00C6 - 193)) | (1L << (U_00C7 - 193)) | (1L << (U_00C8 - 193)) | (1L << (U_00C9 - 193)) | (1L << (U_00CA - 193)) | (1L << (U_00CB - 193)) | (1L << (U_00CC - 193)) | (1L << (U_00CD - 193)) | (1L << (U_00CE - 193)) | (1L << (U_00CF - 193)) | (1L << (U_00D0 - 193)) | (1L << (U_00D1 - 193)) | (1L << (U_00D2 - 193)) | (1L << (U_00D3 - 193)) | (1L << (U_00D4 - 193)) | (1L << (U_00D5 - 193)) | (1L << (U_00D6 - 193)) | (1L << (U_00D7 - 193)) | (1L << (U_00D8 - 193)) | (1L << (U_00D9 - 193)) | (1L << (U_00DA - 193)) | (1L << (U_00DB - 193)) | (1L << (U_00DC - 193)) | (1L << (U_00DD - 193)) | (1L << (U_00DE - 193)) | (1L << (U_00DF - 193)) | (1L << (U_00E0 - 193)) | (1L << (U_00E1 - 193)) | (1L << (U_00E2 - 193)) | (1L << (U_00E3 - 193)) | (1L << (U_00E4 - 193)) | (1L << (U_00E5 - 193)) | (1L << (U_00E6 - 193)) | (1L << (U_00E7 - 193)) | (1L << (U_00E8 - 193)) | (1L << (U_00E9 - 193)) | (1L << (U_00EA - 193)) | (1L << (U_00EB - 193)) | (1L << (U_00EC - 193)) | (1L << (U_00ED - 193)) | (1L << (U_00EE - 193)) | (1L << (U_00EF - 193)) | (1L << (U_00F0 - 193)) | (1L << (U_00F1 - 193)) | (1L << (U_00F2 - 193)) | (1L << (U_00F3 - 193)) | (1L << (U_00F4 - 193)) | (1L << (U_00F5 - 193)) | (1L << (U_00F6 - 193)) | (1L << (U_00F7 - 193)) | (1L << (U_00F8 - 193)) | (1L << (U_00F9 - 193)) | (1L << (U_00FA - 193)) | (1L << (U_00FB - 193)) | (1L << (U_00FC - 193)) | (1L << (U_00FD - 193)) | (1L << (U_00FE - 193)) | (1L << (U_00FF - 193)))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3291,7 +3361,7 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(305);
+			setState(307);
 			match(SPACE);
 			}
 		}
@@ -3427,7 +3497,7 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(307);
+			setState(309);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EXCLAMATION) | (1L << QUOTE) | (1L << POUND) | (1L << DOLLAR) | (1L << PERCENT) | (1L << AMPERSAND) | (1L << APOSTROPHE) | (1L << LEFT_PAREN) | (1L << RIGHT_PAREN) | (1L << ASTERISK) | (1L << PLUS) | (1L << COMMA) | (1L << DASH) | (1L << PERIOD) | (1L << SLASH) | (1L << ZERO) | (1L << ONE) | (1L << TWO) | (1L << THREE) | (1L << FOUR) | (1L << FIVE) | (1L << SIX) | (1L << SEVEN) | (1L << EIGHT) | (1L << NINE) | (1L << COLON) | (1L << SEMICOLON) | (1L << LESS_THAN) | (1L << EQUALS) | (1L << GREATER_THAN) | (1L << QUESTION) | (1L << AT) | (1L << CAP_A) | (1L << CAP_B) | (1L << CAP_C) | (1L << CAP_D) | (1L << CAP_E) | (1L << CAP_F) | (1L << CAP_G) | (1L << CAP_H) | (1L << CAP_I) | (1L << CAP_J) | (1L << CAP_K) | (1L << CAP_L) | (1L << CAP_M) | (1L << CAP_N) | (1L << CAP_O) | (1L << CAP_P) | (1L << CAP_Q) | (1L << CAP_R) | (1L << CAP_S) | (1L << CAP_T) | (1L << CAP_U) | (1L << CAP_V) | (1L << CAP_W) | (1L << CAP_X) | (1L << CAP_Y) | (1L << CAP_Z) | (1L << LEFT_BRACE))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (BACKSLASH - 64)) | (1L << (RIGHT_BRACE - 64)) | (1L << (CARAT - 64)) | (1L << (UNDERSCORE - 64)) | (1L << (ACCENT - 64)) | (1L << (A - 64)) | (1L << (B - 64)) | (1L << (C - 64)) | (1L << (D - 64)) | (1L << (E - 64)) | (1L << (F - 64)) | (1L << (G - 64)) | (1L << (H - 64)) | (1L << (I - 64)) | (1L << (J - 64)) | (1L << (K - 64)) | (1L << (L - 64)) | (1L << (M - 64)) | (1L << (N - 64)) | (1L << (O - 64)) | (1L << (P - 64)) | (1L << (Q - 64)) | (1L << (R - 64)) | (1L << (S - 64)) | (1L << (T - 64)) | (1L << (U - 64)) | (1L << (V - 64)) | (1L << (W - 64)) | (1L << (X - 64)) | (1L << (Y - 64)) | (1L << (Z - 64)) | (1L << (LEFT_CURLY_BRACE - 64)) | (1L << (PIPE - 64)) | (1L << (RIGHT_CURLY_BRACE - 64)) | (1L << (TILDE - 64)))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3565,7 +3635,7 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(309);
+			setState(311);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EXCLAMATION) | (1L << POUND) | (1L << DOLLAR) | (1L << PERCENT) | (1L << AMPERSAND) | (1L << APOSTROPHE) | (1L << LEFT_PAREN) | (1L << RIGHT_PAREN) | (1L << ASTERISK) | (1L << PLUS) | (1L << COMMA) | (1L << DASH) | (1L << PERIOD) | (1L << SLASH) | (1L << ZERO) | (1L << ONE) | (1L << TWO) | (1L << THREE) | (1L << FOUR) | (1L << FIVE) | (1L << SIX) | (1L << SEVEN) | (1L << EIGHT) | (1L << NINE) | (1L << COLON) | (1L << SEMICOLON) | (1L << LESS_THAN) | (1L << GREATER_THAN) | (1L << QUESTION) | (1L << AT) | (1L << CAP_A) | (1L << CAP_B) | (1L << CAP_C) | (1L << CAP_D) | (1L << CAP_E) | (1L << CAP_F) | (1L << CAP_G) | (1L << CAP_H) | (1L << CAP_I) | (1L << CAP_J) | (1L << CAP_K) | (1L << CAP_L) | (1L << CAP_M) | (1L << CAP_N) | (1L << CAP_O) | (1L << CAP_P) | (1L << CAP_Q) | (1L << CAP_R) | (1L << CAP_S) | (1L << CAP_T) | (1L << CAP_U) | (1L << CAP_V) | (1L << CAP_W) | (1L << CAP_X) | (1L << CAP_Y) | (1L << CAP_Z) | (1L << LEFT_BRACE))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (BACKSLASH - 64)) | (1L << (CARAT - 64)) | (1L << (UNDERSCORE - 64)) | (1L << (ACCENT - 64)) | (1L << (A - 64)) | (1L << (B - 64)) | (1L << (C - 64)) | (1L << (D - 64)) | (1L << (E - 64)) | (1L << (F - 64)) | (1L << (G - 64)) | (1L << (H - 64)) | (1L << (I - 64)) | (1L << (J - 64)) | (1L << (K - 64)) | (1L << (L - 64)) | (1L << (M - 64)) | (1L << (N - 64)) | (1L << (O - 64)) | (1L << (P - 64)) | (1L << (Q - 64)) | (1L << (R - 64)) | (1L << (S - 64)) | (1L << (T - 64)) | (1L << (U - 64)) | (1L << (V - 64)) | (1L << (W - 64)) | (1L << (X - 64)) | (1L << (Y - 64)) | (1L << (Z - 64)) | (1L << (LEFT_CURLY_BRACE - 64)) | (1L << (PIPE - 64)) | (1L << (RIGHT_CURLY_BRACE - 64)) | (1L << (TILDE - 64)))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3621,7 +3691,7 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(311);
+			setState(313);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ONE) | (1L << TWO) | (1L << THREE) | (1L << FOUR) | (1L << FIVE) | (1L << SIX) | (1L << SEVEN) | (1L << EIGHT) | (1L << NINE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3693,13 +3763,13 @@ public class Rfc5424Parser extends Parser {
 		DigitContext _localctx = new DigitContext(_ctx, getState());
 		enterRule(_localctx, 78, RULE_digit);
 		try {
-			setState(315);
+			setState(317);
 			switch (_input.LA(1)) {
 			case ZERO:
 				_localctx = new ZeroDigitContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(313);
+				setState(315);
 				match(ZERO);
 				}
 				break;
@@ -3715,7 +3785,7 @@ public class Rfc5424Parser extends Parser {
 				_localctx = new NonZeroDigitContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(314);
+				setState(316);
 				nonzero_digit();
 				}
 				break;
@@ -3761,7 +3831,7 @@ public class Rfc5424Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(317);
+			setState(319);
 			match(DASH);
 			}
 		}
@@ -3777,7 +3847,7 @@ public class Rfc5424Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\u0102\u0142\4\2\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\u0102\u0144\4\2\t"+
 		"\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -3794,91 +3864,93 @@ public class Rfc5424Parser extends Parser {
 		"\u00c5\n\21\3\22\3\22\3\22\3\23\3\23\3\23\3\24\3\24\3\24\3\25\3\25\3\25"+
 		"\5\25\u00d3\n\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25"+
 		"\3\25\3\25\3\25\3\25\3\25\3\25\3\25\5\25\u00e7\n\25\3\26\3\26\5\26\u00eb"+
-		"\n\26\3\27\3\27\3\27\3\27\3\27\3\30\3\30\6\30\u00f4\n\30\r\30\16\30\u00f5"+
-		"\5\30\u00f8\n\30\3\31\3\31\3\31\3\31\3\31\7\31\u00ff\n\31\f\31\16\31\u0102"+
-		"\13\31\3\31\3\31\3\32\3\32\3\32\3\32\3\32\3\32\3\33\3\33\3\34\3\34\3\35"+
-		"\3\35\3\35\5\35\u0113\n\35\3\35\3\35\3\36\7\36\u0118\n\36\f\36\16\36\u011b"+
-		"\13\36\3\37\3\37\5\37\u011f\n\37\3 \7 \u0122\n \f \16 \u0125\13 \3!\3"+
-		"!\3!\3\"\3\"\3#\7#\u012d\n#\f#\16#\u0130\13#\3$\3$\3%\3%\3&\3&\3\'\3\'"+
-		"\3(\3(\3)\3)\5)\u013e\n)\3*\3*\3*\2\2+\2\4\6\b\n\f\16\20\22\24\26\30\32"+
-		"\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPR\2\t\4\2\21\21\23\23\4\2\b\b"+
-		"BC\5\2\u00be\u00be\u00c2\u00c2\u00f2\u00f2\3\2\3\u0102\3\2\7d\6\2\7\7"+
-		"\t\"$BDd\3\2\27\37\u0136\2T\3\2\2\2\4\\\3\2\2\2\6i\3\2\2\2\bm\3\2\2\2"+
-		"\nv\3\2\2\2\f\u0086\3\2\2\2\16\u008f\3\2\2\2\20\u0098\3\2\2\2\22\u00a1"+
-		"\3\2\2\2\24\u00a8\3\2\2\2\26\u00aa\3\2\2\2\30\u00b0\3\2\2\2\32\u00b5\3"+
-		"\2\2\2\34\u00b8\3\2\2\2\36\u00bb\3\2\2\2 \u00be\3\2\2\2\"\u00c6\3\2\2"+
-		"\2$\u00c9\3\2\2\2&\u00cc\3\2\2\2(\u00cf\3\2\2\2*\u00ea\3\2\2\2,\u00ec"+
-		"\3\2\2\2.\u00f7\3\2\2\2\60\u00f9\3\2\2\2\62\u0105\3\2\2\2\64\u010b\3\2"+
-		"\2\2\66\u010d\3\2\2\28\u0112\3\2\2\2:\u0119\3\2\2\2<\u011e\3\2\2\2>\u0123"+
-		"\3\2\2\2@\u0126\3\2\2\2B\u0129\3\2\2\2D\u012e\3\2\2\2F\u0131\3\2\2\2H"+
-		"\u0133\3\2\2\2J\u0135\3\2\2\2L\u0137\3\2\2\2N\u0139\3\2\2\2P\u013d\3\2"+
-		"\2\2R\u013f\3\2\2\2TU\5\4\3\2UV\5H%\2VZ\5.\30\2WX\5H%\2XY\5<\37\2Y[\3"+
-		"\2\2\2ZW\3\2\2\2Z[\3\2\2\2[\3\3\2\2\2\\]\5\6\4\2]^\5\n\6\2^_\5H%\2_`\5"+
-		"\24\13\2`a\5H%\2ab\5\f\7\2bc\5H%\2cd\5\16\b\2de\5H%\2ef\5\20\t\2fg\5H"+
-		"%\2gh\5\22\n\2h\5\3\2\2\2ij\7\"\2\2jk\5\b\5\2kl\7$\2\2l\7\3\2\2\2mt\5"+
-		"P)\2np\5P)\2on\3\2\2\2op\3\2\2\2pu\3\2\2\2qr\5P)\2rs\5P)\2su\3\2\2\2t"+
-		"o\3\2\2\2tq\3\2\2\2u\t\3\2\2\2v}\5N(\2wy\5P)\2xw\3\2\2\2xy\3\2\2\2y~\3"+
-		"\2\2\2z{\5P)\2{|\5P)\2|~\3\2\2\2}x\3\2\2\2}z\3\2\2\2~\13\3\2\2\2\177\u0087"+
-		"\5R*\2\u0080\u0082\5J&\2\u0081\u0080\3\2\2\2\u0082\u0085\3\2\2\2\u0083"+
-		"\u0081\3\2\2\2\u0083\u0084\3\2\2\2\u0084\u0087\3\2\2\2\u0085\u0083\3\2"+
-		"\2\2\u0086\177\3\2\2\2\u0086\u0083\3\2\2\2\u0087\r\3\2\2\2\u0088\u0090"+
-		"\5R*\2\u0089\u008b\5J&\2\u008a\u0089\3\2\2\2\u008b\u008e\3\2\2\2\u008c"+
-		"\u008a\3\2\2\2\u008c\u008d\3\2\2\2\u008d\u0090\3\2\2\2\u008e\u008c\3\2"+
-		"\2\2\u008f\u0088\3\2\2\2\u008f\u008c\3\2\2\2\u0090\17\3\2\2\2\u0091\u0099"+
-		"\5R*\2\u0092\u0094\5J&\2\u0093\u0092\3\2\2\2\u0094\u0097\3\2\2\2\u0095"+
-		"\u0093\3\2\2\2\u0095\u0096\3\2\2\2\u0096\u0099\3\2\2\2\u0097\u0095\3\2"+
-		"\2\2\u0098\u0091\3\2\2\2\u0098\u0095\3\2\2\2\u0099\21\3\2\2\2\u009a\u00a2"+
-		"\5R*\2\u009b\u009d\5J&\2\u009c\u009b\3\2\2\2\u009d\u00a0\3\2\2\2\u009e"+
-		"\u009c\3\2\2\2\u009e\u009f\3\2\2\2\u009f\u00a2\3\2\2\2\u00a0\u009e\3\2"+
-		"\2\2\u00a1\u009a\3\2\2\2\u00a1\u009e\3\2\2\2\u00a2\23\3\2\2\2\u00a3\u00a9"+
-		"\5R*\2\u00a4\u00a5\5\26\f\2\u00a5\u00a6\7:\2\2\u00a6\u00a7\5\36\20\2\u00a7"+
-		"\u00a9\3\2\2\2\u00a8\u00a3\3\2\2\2\u00a8\u00a4\3\2\2\2\u00a9\25\3\2\2"+
-		"\2\u00aa\u00ab\5\30\r\2\u00ab\u00ac\7\23\2\2\u00ac\u00ad\5\32\16\2\u00ad"+
-		"\u00ae\7\23\2\2\u00ae\u00af\5\34\17\2\u00af\27\3\2\2\2\u00b0\u00b1\5P"+
-		")\2\u00b1\u00b2\5P)\2\u00b2\u00b3\5P)\2\u00b3\u00b4\5P)\2\u00b4\31\3\2"+
-		"\2\2\u00b5\u00b6\5P)\2\u00b6\u00b7\5P)\2\u00b7\33\3\2\2\2\u00b8\u00b9"+
-		"\5P)\2\u00b9\u00ba\5P)\2\u00ba\35\3\2\2\2\u00bb\u00bc\5 \21\2\u00bc\u00bd"+
-		"\5*\26\2\u00bd\37\3\2\2\2\u00be\u00bf\5\"\22\2\u00bf\u00c0\7 \2\2\u00c0"+
-		"\u00c1\5$\23\2\u00c1\u00c2\7 \2\2\u00c2\u00c4\5&\24\2\u00c3\u00c5\5(\25"+
-		"\2\u00c4\u00c3\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5!\3\2\2\2\u00c6\u00c7"+
-		"\5P)\2\u00c7\u00c8\5P)\2\u00c8#\3\2\2\2\u00c9\u00ca\5P)\2\u00ca\u00cb"+
-		"\5P)\2\u00cb%\3\2\2\2\u00cc\u00cd\5P)\2\u00cd\u00ce\5P)\2\u00ce\'\3\2"+
-		"\2\2\u00cf\u00d0\7\24\2\2\u00d0\u00e6\5P)\2\u00d1\u00d3\5P)\2\u00d2\u00d1"+
-		"\3\2\2\2\u00d2\u00d3\3\2\2\2\u00d3\u00e7\3\2\2\2\u00d4\u00d5\5P)\2\u00d5"+
-		"\u00d6\5P)\2\u00d6\u00e7\3\2\2\2\u00d7\u00d8\5P)\2\u00d8\u00d9\5P)\2\u00d9"+
-		"\u00da\5P)\2\u00da\u00e7\3\2\2\2\u00db\u00dc\5P)\2\u00dc\u00dd\5P)\2\u00dd"+
-		"\u00de\5P)\2\u00de\u00df\5P)\2\u00df\u00e7\3\2\2\2\u00e0\u00e1\5P)\2\u00e1"+
-		"\u00e2\5P)\2\u00e2\u00e3\5P)\2\u00e3\u00e4\5P)\2\u00e4\u00e5\5P)\2\u00e5"+
-		"\u00e7\3\2\2\2\u00e6\u00d2\3\2\2\2\u00e6\u00d4\3\2\2\2\u00e6\u00d7\3\2"+
-		"\2\2\u00e6\u00db\3\2\2\2\u00e6\u00e0\3\2\2\2\u00e7)\3\2\2\2\u00e8\u00eb"+
-		"\7@\2\2\u00e9\u00eb\5,\27\2\u00ea\u00e8\3\2\2\2\u00ea\u00e9\3\2\2\2\u00eb"+
-		"+\3\2\2\2\u00ec\u00ed\t\2\2\2\u00ed\u00ee\5\"\22\2\u00ee\u00ef\7 \2\2"+
-		"\u00ef\u00f0\5$\23\2\u00f0-\3\2\2\2\u00f1\u00f8\5R*\2\u00f2\u00f4\5\60"+
-		"\31\2\u00f3\u00f2\3\2\2\2\u00f4\u00f5\3\2\2\2\u00f5\u00f3\3\2\2\2\u00f5"+
-		"\u00f6\3\2\2\2\u00f6\u00f8\3\2\2\2\u00f7\u00f1\3\2\2\2\u00f7\u00f3\3\2"+
-		"\2\2\u00f8/\3\2\2\2\u00f9\u00fa\7A\2\2\u00fa\u0100\5\64\33\2\u00fb\u00fc"+
-		"\5H%\2\u00fc\u00fd\5\62\32\2\u00fd\u00ff\3\2\2\2\u00fe\u00fb\3\2\2\2\u00ff"+
-		"\u0102\3\2\2\2\u0100\u00fe\3\2\2\2\u0100\u0101\3\2\2\2\u0101\u0103\3\2"+
-		"\2\2\u0102\u0100\3\2\2\2\u0103\u0104\7C\2\2\u0104\61\3\2\2\2\u0105\u0106"+
-		"\5\66\34\2\u0106\u0107\7#\2\2\u0107\u0108\7\b\2\2\u0108\u0109\58\35\2"+
-		"\u0109\u010a\7\b\2\2\u010a\63\3\2\2\2\u010b\u010c\5:\36\2\u010c\65\3\2"+
-		"\2\2\u010d\u010e\5:\36\2\u010e\67\3\2\2\2\u010f\u0113\n\3\2\2\u0110\u0111"+
-		"\7B\2\2\u0111\u0113\t\3\2\2\u0112\u010f\3\2\2\2\u0112\u0110\3\2\2\2\u0113"+
-		"\u0114\3\2\2\2\u0114\u0115\5D#\2\u01159\3\2\2\2\u0116\u0118\5L\'\2\u0117"+
-		"\u0116\3\2\2\2\u0118\u011b\3\2\2\2\u0119\u0117\3\2\2\2\u0119\u011a\3\2"+
-		"\2\2\u011a;\3\2\2\2\u011b\u0119\3\2\2\2\u011c\u011f\5> \2\u011d\u011f"+
-		"\5@!\2\u011e\u011c\3\2\2\2\u011e\u011d\3\2\2\2\u011f=\3\2\2\2\u0120\u0122"+
-		"\5F$\2\u0121\u0120\3\2\2\2\u0122\u0125\3\2\2\2\u0123\u0121\3\2\2\2\u0123"+
-		"\u0124\3\2\2\2\u0124?\3\2\2\2\u0125\u0123\3\2\2\2\u0126\u0127\5B\"\2\u0127"+
-		"\u0128\5D#\2\u0128A\3\2\2\2\u0129\u012a\t\4\2\2\u012aC\3\2\2\2\u012b\u012d"+
-		"\5F$\2\u012c\u012b\3\2\2\2\u012d\u0130\3\2\2\2\u012e\u012c\3\2\2\2\u012e"+
-		"\u012f\3\2\2\2\u012fE\3\2\2\2\u0130\u012e\3\2\2\2\u0131\u0132\t\5\2\2"+
-		"\u0132G\3\2\2\2\u0133\u0134\7\6\2\2\u0134I\3\2\2\2\u0135\u0136\t\6\2\2"+
-		"\u0136K\3\2\2\2\u0137\u0138\t\7\2\2\u0138M\3\2\2\2\u0139\u013a\t\b\2\2"+
-		"\u013aO\3\2\2\2\u013b\u013e\7\26\2\2\u013c\u013e\5N(\2\u013d\u013b\3\2"+
-		"\2\2\u013d\u013c\3\2\2\2\u013eQ\3\2\2\2\u013f\u0140\7\23\2\2\u0140S\3"+
-		"\2\2\2\35Zotx}\u0083\u0086\u008c\u008f\u0095\u0098\u009e\u00a1\u00a8\u00c4"+
-		"\u00d2\u00e6\u00ea\u00f5\u00f7\u0100\u0112\u0119\u011e\u0123\u012e\u013d";
+		"\n\26\3\27\3\27\3\27\3\27\3\27\3\30\3\30\3\30\3\30\3\30\3\30\6\30\u00f8"+
+		"\n\30\r\30\16\30\u00f9\5\30\u00fc\n\30\3\31\3\31\3\31\3\31\7\31\u0102"+
+		"\n\31\f\31\16\31\u0105\13\31\3\32\3\32\3\32\3\32\3\32\3\32\3\33\3\33\3"+
+		"\34\3\34\3\35\3\35\3\35\7\35\u0114\n\35\f\35\16\35\u0117\13\35\3\36\7"+
+		"\36\u011a\n\36\f\36\16\36\u011d\13\36\3\37\3\37\5\37\u0121\n\37\3 \7 "+
+		"\u0124\n \f \16 \u0127\13 \3!\3!\3!\3\"\3\"\3#\7#\u012f\n#\f#\16#\u0132"+
+		"\13#\3$\3$\3%\3%\3&\3&\3\'\3\'\3(\3(\3)\3)\5)\u0140\n)\3*\3*\3*\2\2+\2"+
+		"\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJL"+
+		"NPR\2\t\4\2\21\21\23\23\4\2\b\bBC\5\2\u00be\u00be\u00c2\u00c2\u00f2\u00f2"+
+		"\3\2\3\u0102\3\2\7d\6\2\7\7\t\"$BDd\3\2\27\37\u0139\2T\3\2\2\2\4\\\3\2"+
+		"\2\2\6i\3\2\2\2\bm\3\2\2\2\nv\3\2\2\2\f\u0086\3\2\2\2\16\u008f\3\2\2\2"+
+		"\20\u0098\3\2\2\2\22\u00a1\3\2\2\2\24\u00a8\3\2\2\2\26\u00aa\3\2\2\2\30"+
+		"\u00b0\3\2\2\2\32\u00b5\3\2\2\2\34\u00b8\3\2\2\2\36\u00bb\3\2\2\2 \u00be"+
+		"\3\2\2\2\"\u00c6\3\2\2\2$\u00c9\3\2\2\2&\u00cc\3\2\2\2(\u00cf\3\2\2\2"+
+		"*\u00ea\3\2\2\2,\u00ec\3\2\2\2.\u00fb\3\2\2\2\60\u00fd\3\2\2\2\62\u0106"+
+		"\3\2\2\2\64\u010c\3\2\2\2\66\u010e\3\2\2\28\u0115\3\2\2\2:\u011b\3\2\2"+
+		"\2<\u0120\3\2\2\2>\u0125\3\2\2\2@\u0128\3\2\2\2B\u012b\3\2\2\2D\u0130"+
+		"\3\2\2\2F\u0133\3\2\2\2H\u0135\3\2\2\2J\u0137\3\2\2\2L\u0139\3\2\2\2N"+
+		"\u013b\3\2\2\2P\u013f\3\2\2\2R\u0141\3\2\2\2TU\5\4\3\2UV\5H%\2VZ\5.\30"+
+		"\2WX\5H%\2XY\5<\37\2Y[\3\2\2\2ZW\3\2\2\2Z[\3\2\2\2[\3\3\2\2\2\\]\5\6\4"+
+		"\2]^\5\n\6\2^_\5H%\2_`\5\24\13\2`a\5H%\2ab\5\f\7\2bc\5H%\2cd\5\16\b\2"+
+		"de\5H%\2ef\5\20\t\2fg\5H%\2gh\5\22\n\2h\5\3\2\2\2ij\7\"\2\2jk\5\b\5\2"+
+		"kl\7$\2\2l\7\3\2\2\2mt\5P)\2np\5P)\2on\3\2\2\2op\3\2\2\2pu\3\2\2\2qr\5"+
+		"P)\2rs\5P)\2su\3\2\2\2to\3\2\2\2tq\3\2\2\2u\t\3\2\2\2v}\5N(\2wy\5P)\2"+
+		"xw\3\2\2\2xy\3\2\2\2y~\3\2\2\2z{\5P)\2{|\5P)\2|~\3\2\2\2}x\3\2\2\2}z\3"+
+		"\2\2\2~\13\3\2\2\2\177\u0087\5R*\2\u0080\u0082\5J&\2\u0081\u0080\3\2\2"+
+		"\2\u0082\u0085\3\2\2\2\u0083\u0081\3\2\2\2\u0083\u0084\3\2\2\2\u0084\u0087"+
+		"\3\2\2\2\u0085\u0083\3\2\2\2\u0086\177\3\2\2\2\u0086\u0083\3\2\2\2\u0087"+
+		"\r\3\2\2\2\u0088\u0090\5R*\2\u0089\u008b\5J&\2\u008a\u0089\3\2\2\2\u008b"+
+		"\u008e\3\2\2\2\u008c\u008a\3\2\2\2\u008c\u008d\3\2\2\2\u008d\u0090\3\2"+
+		"\2\2\u008e\u008c\3\2\2\2\u008f\u0088\3\2\2\2\u008f\u008c\3\2\2\2\u0090"+
+		"\17\3\2\2\2\u0091\u0099\5R*\2\u0092\u0094\5J&\2\u0093\u0092\3\2\2\2\u0094"+
+		"\u0097\3\2\2\2\u0095\u0093\3\2\2\2\u0095\u0096\3\2\2\2\u0096\u0099\3\2"+
+		"\2\2\u0097\u0095\3\2\2\2\u0098\u0091\3\2\2\2\u0098\u0095\3\2\2\2\u0099"+
+		"\21\3\2\2\2\u009a\u00a2\5R*\2\u009b\u009d\5J&\2\u009c\u009b\3\2\2\2\u009d"+
+		"\u00a0\3\2\2\2\u009e\u009c\3\2\2\2\u009e\u009f\3\2\2\2\u009f\u00a2\3\2"+
+		"\2\2\u00a0\u009e\3\2\2\2\u00a1\u009a\3\2\2\2\u00a1\u009e\3\2\2\2\u00a2"+
+		"\23\3\2\2\2\u00a3\u00a9\5R*\2\u00a4\u00a5\5\26\f\2\u00a5\u00a6\7:\2\2"+
+		"\u00a6\u00a7\5\36\20\2\u00a7\u00a9\3\2\2\2\u00a8\u00a3\3\2\2\2\u00a8\u00a4"+
+		"\3\2\2\2\u00a9\25\3\2\2\2\u00aa\u00ab\5\30\r\2\u00ab\u00ac\7\23\2\2\u00ac"+
+		"\u00ad\5\32\16\2\u00ad\u00ae\7\23\2\2\u00ae\u00af\5\34\17\2\u00af\27\3"+
+		"\2\2\2\u00b0\u00b1\5P)\2\u00b1\u00b2\5P)\2\u00b2\u00b3\5P)\2\u00b3\u00b4"+
+		"\5P)\2\u00b4\31\3\2\2\2\u00b5\u00b6\5P)\2\u00b6\u00b7\5P)\2\u00b7\33\3"+
+		"\2\2\2\u00b8\u00b9\5P)\2\u00b9\u00ba\5P)\2\u00ba\35\3\2\2\2\u00bb\u00bc"+
+		"\5 \21\2\u00bc\u00bd\5*\26\2\u00bd\37\3\2\2\2\u00be\u00bf\5\"\22\2\u00bf"+
+		"\u00c0\7 \2\2\u00c0\u00c1\5$\23\2\u00c1\u00c2\7 \2\2\u00c2\u00c4\5&\24"+
+		"\2\u00c3\u00c5\5(\25\2\u00c4\u00c3\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5!"+
+		"\3\2\2\2\u00c6\u00c7\5P)\2\u00c7\u00c8\5P)\2\u00c8#\3\2\2\2\u00c9\u00ca"+
+		"\5P)\2\u00ca\u00cb\5P)\2\u00cb%\3\2\2\2\u00cc\u00cd\5P)\2\u00cd\u00ce"+
+		"\5P)\2\u00ce\'\3\2\2\2\u00cf\u00d0\7\24\2\2\u00d0\u00e6\5P)\2\u00d1\u00d3"+
+		"\5P)\2\u00d2\u00d1\3\2\2\2\u00d2\u00d3\3\2\2\2\u00d3\u00e7\3\2\2\2\u00d4"+
+		"\u00d5\5P)\2\u00d5\u00d6\5P)\2\u00d6\u00e7\3\2\2\2\u00d7\u00d8\5P)\2\u00d8"+
+		"\u00d9\5P)\2\u00d9\u00da\5P)\2\u00da\u00e7\3\2\2\2\u00db\u00dc\5P)\2\u00dc"+
+		"\u00dd\5P)\2\u00dd\u00de\5P)\2\u00de\u00df\5P)\2\u00df\u00e7\3\2\2\2\u00e0"+
+		"\u00e1\5P)\2\u00e1\u00e2\5P)\2\u00e2\u00e3\5P)\2\u00e3\u00e4\5P)\2\u00e4"+
+		"\u00e5\5P)\2\u00e5\u00e7\3\2\2\2\u00e6\u00d2\3\2\2\2\u00e6\u00d4\3\2\2"+
+		"\2\u00e6\u00d7\3\2\2\2\u00e6\u00db\3\2\2\2\u00e6\u00e0\3\2\2\2\u00e7)"+
+		"\3\2\2\2\u00e8\u00eb\7@\2\2\u00e9\u00eb\5,\27\2\u00ea\u00e8\3\2\2\2\u00ea"+
+		"\u00e9\3\2\2\2\u00eb+\3\2\2\2\u00ec\u00ed\t\2\2\2\u00ed\u00ee\5\"\22\2"+
+		"\u00ee\u00ef\7 \2\2\u00ef\u00f0\5$\23\2\u00f0-\3\2\2\2\u00f1\u00fc\5R"+
+		"*\2\u00f2\u00f3\7A\2\2\u00f3\u00f4\5\60\31\2\u00f4\u00f5\7C\2\2\u00f5"+
+		"\u00f6\5H%\2\u00f6\u00f8\3\2\2\2\u00f7\u00f2\3\2\2\2\u00f8\u00f9\3\2\2"+
+		"\2\u00f9\u00f7\3\2\2\2\u00f9\u00fa\3\2\2\2\u00fa\u00fc\3\2\2\2\u00fb\u00f1"+
+		"\3\2\2\2\u00fb\u00f7\3\2\2\2\u00fc/\3\2\2\2\u00fd\u0103\5\64\33\2\u00fe"+
+		"\u00ff\5H%\2\u00ff\u0100\5\62\32\2\u0100\u0102\3\2\2\2\u0101\u00fe\3\2"+
+		"\2\2\u0102\u0105\3\2\2\2\u0103\u0101\3\2\2\2\u0103\u0104\3\2\2\2\u0104"+
+		"\61\3\2\2\2\u0105\u0103\3\2\2\2\u0106\u0107\5\66\34\2\u0107\u0108\7#\2"+
+		"\2\u0108\u0109\7\b\2\2\u0109\u010a\58\35\2\u010a\u010b\7\b\2\2\u010b\63"+
+		"\3\2\2\2\u010c\u010d\5:\36\2\u010d\65\3\2\2\2\u010e\u010f\5:\36\2\u010f"+
+		"\67\3\2\2\2\u0110\u0114\n\3\2\2\u0111\u0112\7B\2\2\u0112\u0114\t\3\2\2"+
+		"\u0113\u0110\3\2\2\2\u0113\u0111\3\2\2\2\u0114\u0117\3\2\2\2\u0115\u0113"+
+		"\3\2\2\2\u0115\u0116\3\2\2\2\u01169\3\2\2\2\u0117\u0115\3\2\2\2\u0118"+
+		"\u011a\5L\'\2\u0119\u0118\3\2\2\2\u011a\u011d\3\2\2\2\u011b\u0119\3\2"+
+		"\2\2\u011b\u011c\3\2\2\2\u011c;\3\2\2\2\u011d\u011b\3\2\2\2\u011e\u0121"+
+		"\5> \2\u011f\u0121\5@!\2\u0120\u011e\3\2\2\2\u0120\u011f\3\2\2\2\u0121"+
+		"=\3\2\2\2\u0122\u0124\5F$\2\u0123\u0122\3\2\2\2\u0124\u0127\3\2\2\2\u0125"+
+		"\u0123\3\2\2\2\u0125\u0126\3\2\2\2\u0126?\3\2\2\2\u0127\u0125\3\2\2\2"+
+		"\u0128\u0129\5B\"\2\u0129\u012a\5D#\2\u012aA\3\2\2\2\u012b\u012c\t\4\2"+
+		"\2\u012cC\3\2\2\2\u012d\u012f\5F$\2\u012e\u012d\3\2\2\2\u012f\u0132\3"+
+		"\2\2\2\u0130\u012e\3\2\2\2\u0130\u0131\3\2\2\2\u0131E\3\2\2\2\u0132\u0130"+
+		"\3\2\2\2\u0133\u0134\t\5\2\2\u0134G\3\2\2\2\u0135\u0136\7\6\2\2\u0136"+
+		"I\3\2\2\2\u0137\u0138\t\6\2\2\u0138K\3\2\2\2\u0139\u013a\t\7\2\2\u013a"+
+		"M\3\2\2\2\u013b\u013c\t\b\2\2\u013cO\3\2\2\2\u013d\u0140\7\26\2\2\u013e"+
+		"\u0140\5N(\2\u013f\u013d\3\2\2\2\u013f\u013e\3\2\2\2\u0140Q\3\2\2\2\u0141"+
+		"\u0142\7\23\2\2\u0142S\3\2\2\2\36Zotx}\u0083\u0086\u008c\u008f\u0095\u0098"+
+		"\u009e\u00a1\u00a8\u00c4\u00d2\u00e6\u00ea\u00f9\u00fb\u0103\u0113\u0115"+
+		"\u011b\u0120\u0125\u0130\u013f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

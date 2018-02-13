@@ -112,22 +112,23 @@ grammar Rfc5424;
     time_numoffset  : (PLUS | DASH) time_hour COLON time_minute;
 
 
-    structured_data : nilvalue | sd_element+;
-
-    sd_element      : LEFT_BRACE sd_id (sp sd_param)* RIGHT_BRACE #sdElement;
+    structured_data : nilvalue  #nilStructuredData
+    | (LEFT_BRACE sd_element RIGHT_BRACE sp)+ #structuredData
+    ;
+    sd_element      : sd_id (sp sd_param)* #sdElement;
 
     sd_param        : param_name EQUALS QUOTE param_value QUOTE #sdParam;
 
 
-    sd_id           : sd_name;
+    sd_id           : sd_name #sdId;
 
-    param_name      : sd_name;
+    param_name      : sd_name #paramName;
 
-    param_value     : (~('"' | '\\' | ']' ) | '\\' ('"' | '\\' | ']'))utf_8_string;
+    //param_value     : (~('"' | '\\' | ']' ) | '\\' ('"' | '\\' | ']'))utf_8_string #paramValue;
+    param_value     : (~('"' | '\\' | ']' ) | '\\' ('"' | '\\' | ']'))* #paramValue;
+    //param_value     : utf_8_string #paramValue;
                     // characters '"', '\' and
                     // ']' MUST be escaped.
-
-
 
     sd_name         : printusasciinospecials* #name;
                       // except '=', SP, ']', %d34 (")

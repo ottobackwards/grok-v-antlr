@@ -227,7 +227,14 @@ public class Rfc5424BaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStructured_data(Rfc5424Parser.Structured_dataContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNilStructuredData(Rfc5424Parser.NilStructuredDataContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitStructuredData(Rfc5424Parser.StructuredDataContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -248,21 +255,21 @@ public class Rfc5424BaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSd_id(Rfc5424Parser.Sd_idContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSdId(Rfc5424Parser.SdIdContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParam_name(Rfc5424Parser.Param_nameContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParamName(Rfc5424Parser.ParamNameContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParam_value(Rfc5424Parser.Param_valueContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParamValue(Rfc5424Parser.ParamValueContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

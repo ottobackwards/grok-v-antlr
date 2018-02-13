@@ -27,11 +27,11 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
   @Override
   public SLValue visitSyslogHeader(Rfc5424Parser.SyslogHeaderContext ctx) {
     super.visitSyslogHeader(ctx);
-    System.out.println(visit(ctx.app_name()));
-    System.out.println(visit(ctx.hostname()));
-    System.out.println(visit(ctx.pri()));
-    System.out.println(visit(ctx.procid()));
-    System.out.println(visit(ctx.timestamp()));
+    //System.out.println(visit(ctx.app_name()));
+    //System.out.println(visit(ctx.hostname()));
+    //System.out.println(visit(ctx.pri()));
+    //System.out.println(visit(ctx.procid()));
+    //System.out.println(visit(ctx.timestamp()));
 
     return SLValue.VOID;
   }
@@ -150,8 +150,48 @@ public class Syslog5424Visitor extends Rfc5424BaseVisitor<SLValue> {
 
   @Override
   public SLValue visitName(Rfc5424Parser.NameContext ctx) {
- //   System.out.println(ctx.getText());
+   // System.out.println(ctx.getText());
     return new SLValue(ctx.getText());
   }
+
+  @Override
+  public SLValue visitStructuredData(Rfc5424Parser.StructuredDataContext ctx) {
+    System.out.println("STRUCTURED " + ctx.getText());
+    return super.visitStructuredData(ctx);
+  }
+
+  @Override
+  public SLValue visitSdElement(Rfc5424Parser.SdElementContext ctx) {
+     System.out.println("ELEMENT " + ctx.getText());
+     return super.visitSdElement(ctx);
+  }
+
+  @Override
+  public SLValue visitSdId(Rfc5424Parser.SdIdContext ctx) {
+    System.out.println("SDID " + ctx.getText());
+    return super.visitSdId(ctx);
+  }
+
+  @Override
+  public SLValue visitSdParam(Rfc5424Parser.SdParamContext ctx) {
+    System.out.println("PARAM " + ctx.getText());
+    super.visitSdParam(ctx);
+    return new SLValue((ctx.getText()));
+  }
+
+  @Override
+  public SLValue visitParamName(Rfc5424Parser.ParamNameContext ctx) {
+    System.out.println("PARAM NAME " + ctx.getText());
+    super.visitParamName(ctx);
+    return new SLValue(ctx.getText());
+  }
+
+  @Override
+  public SLValue visitParamValue(Rfc5424Parser.ParamValueContext ctx) {
+    System.out.println("PARAM VALUE " + ctx.getText());
+    super.visitParamValue(ctx);
+    return new SLValue(ctx.getText());
+  }
+
 
 }
