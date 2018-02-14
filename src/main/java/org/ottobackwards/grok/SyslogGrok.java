@@ -1,4 +1,4 @@
-package org.ottobackwards;
+package org.ottobackwards.grok;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package org.ottobackwards;
+package org.ottobackwards.grok;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,6 +7,7 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.ottobackwards.dsl.SyslogFieldKeys;
+import org.ottobackwards.grok.SyslogGrok;
 
 public class SyslogGrokTest {
 
