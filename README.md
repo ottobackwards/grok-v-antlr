@@ -14,11 +14,12 @@ Logstash by way of [grokconstructor]()https://grokconstructor.appspot.com/grokli
 - they don't break the structured data into workable parts, they are just globs and would require more processing
 
 
-
+```bash
 Benchmark                            Mode  Cnt        Score      Error  Units
 GrokCachedPerformanceTest.testGrok   avgt  200    39974.866 ±  325.985  ns/op
 GrokPerformanceTest.testGrok         avgt  200  2121312.817 ± 9928.443  ns/op
 Syslog5424PerformanceTest.parserLog  avgt  200   173509.623 ±  834.554  ns/op
+```
 
 Why is it so different?  Because of all the patterns required to support the groks.  A single grok
 patterns is actually a composite or stack of regex patterns.  So parsing the patterns and replacing them into one HUGE pattern for a name
