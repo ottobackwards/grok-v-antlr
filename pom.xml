@@ -89,9 +89,8 @@
         <version>${global_antlr_version}</version>
         <configuration>
           <outputDirectory>${basedir}/src/main/java</outputDirectory>
-            <arguments>
-              <argument>-visitor</argument>
-            </arguments>
+          <listener>true</listener>
+          <visitor>true</visitor>
         </configuration>
         <executions>
           <execution>
