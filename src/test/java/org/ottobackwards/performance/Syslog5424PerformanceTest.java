@@ -14,7 +14,7 @@ import org.ottobackwards.dsl.Syslog5424Visitor;
 import org.ottobackwards.dsl.generated.Rfc5424Lexer;
 import org.ottobackwards.dsl.generated.Rfc5424Parser;
 
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 @BenchmarkMode(Mode.AverageTime)
 @OperationsPerInvocation(1)
 public class Syslog5424PerformanceTest {

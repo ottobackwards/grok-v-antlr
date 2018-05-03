@@ -15,6 +15,8 @@ Logstash by way of [grokconstructor]()https://grokconstructor.appspot.com/grokli
 
 
 ```bash
+with nanoseconds
+
 Result "org.ottobackwards.performance.Syslog5424PerformanceTest.parserLog":
   190261.831 ±(99.9%) 6057.783 ns/op [Average]
   (min, avg, max) = (155779.499, 190261.831, 318131.904), stdev = 25649.031
@@ -28,6 +30,23 @@ GrokCachedPerformanceTest.testGrok           avgt  200    37462.124 ±   252.946
 GrokPerformanceTest.testGrok                 avgt  200  2017339.726 ± 28514.112  ns/op
 Syslog5424ListenerPerformanceTest.parserLog  avgt  200   167807.349 ±  5744.643  ns/op
 Syslog5424PerformanceTest.parserLog          avgt  200   190261.831 ±  6057.783  ns/op
+
+with milliseconds
+
+Result "org.ottobackwards.performance.Syslog5424PerformanceTest.parserLog":
+  0.159 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.154, 0.159, 0.176), stdev = 0.003
+  CI (99.9%): [0.159, 0.160] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:27:04
+
+Benchmark                                    Mode  Cnt  Score    Error  Units
+GrokCachedPerformanceTest.testGrok           avgt  200  0.036 ±  0.001  ms/op
+GrokPerformanceTest.testGrok                 avgt  200  1.817 ±  0.006  ms/op
+Syslog5424ListenerPerformanceTest.parserLog  avgt  200  0.159 ±  0.001  ms/op
+Syslog5424PerformanceTest.parserLog          avgt  200  0.159 ±  0.001  ms/op
+
 ```
 
 Why is it so different?  Because of all the patterns required to support the groks.  A single grok

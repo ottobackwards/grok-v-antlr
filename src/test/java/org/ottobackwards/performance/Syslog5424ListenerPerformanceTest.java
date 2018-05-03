@@ -16,7 +16,7 @@ import org.ottobackwards.dsl.generated.Rfc5424Parser;
 
 import java.util.concurrent.TimeUnit;
 
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 @BenchmarkMode(Mode.AverageTime)
 @OperationsPerInvocation(1)
 public class Syslog5424ListenerPerformanceTest {
