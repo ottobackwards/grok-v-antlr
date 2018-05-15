@@ -14,13 +14,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <global_antlr_version>4.5</global_antlr_version>
   </properties>
-  <repositories>
-    <repository>
-      <id>Metron-Kraken-Repo</id>
-      <name>Metron Kraken Repository</name>
-      <url>https://raw.github.com/opensoc/kraken/mvn-repo</url>
-    </repository>
-  </repositories>
   <dependencies>
     <dependency>
       <groupId>org.apache.commons</groupId>

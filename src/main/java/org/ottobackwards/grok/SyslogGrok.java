@@ -7,14 +7,13 @@ import oi.thekraken.grok.api.Grok;
 import oi.thekraken.grok.api.Match;
 
 public class SyslogGrok {
-
+private static final String SYSLOG_GROK_PATTERN = "%{SYSLOG5424LINE}";
   public Map<String,Object> parse(String data, byte[] groks) throws Exception {
 
     Grok grok = new Grok();
     grok.addPatternFromReader(new InputStreamReader(new ByteArrayInputStream(groks)));
 
-    String grokPattern = "%{SYSLOG5424LINE}";
-    grok.compile(grokPattern);
+    grok.compile(SYSLOG_GROK_PATTERN);
 
     Match gm = grok.match(data);
     gm.captures();
